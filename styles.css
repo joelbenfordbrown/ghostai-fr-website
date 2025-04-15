@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #111827;
+    color: #7fd858;
+    font-family: 'Chakra Petch', sans-serif;
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.logo {
+    font-weight: 500;
+    font-size: clamp(0.95rem, 4.5vw, 1.4rem);
+    letter-spacing: 1.8px;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.tm {
+    font-size: 0.5em;
+    vertical-align: super;
+    margin-left: 0.15em;
+}
+
+.content {
+    flex: 1;
+    text-align: center;
+    margin: auto 0;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: clamp(1.8rem, 7.5vw, 3.7rem);
+    margin-bottom: 1rem;
+    letter-spacing: 0.8px;
+    line-height: 1.05;
+}
+
+.ghost-text {
+    display: block;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+}
+
+.framework-text {
+    display: block;
+    font-size: 0.6em;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    margin-top: -0.3em;
+    opacity: 0.9;
+}
+
+h2 {
+    font-size: clamp(1.1rem, 3.8vw, 1.6rem);
+    margin-bottom: 1.5rem;
+    font-weight: 350;
+    color: rgba(127, 216, 88, 0.8);
+    line-height: 1.4;
+}
+
+.description {
+    margin: 2rem 0;
+    line-height: 1.7;
+    font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+    color: rgba(127, 216, 88, 0.85);
+}
+
+.slogan {
+    font-style: italic;
+    margin-top: 1rem;
+    color: rgba(127, 216, 88, 0.9);
+}
+
+.attribution {
+    margin: 2rem 0;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    color: rgba(127, 216, 88, 0.8);
+    line-height: 1.3;
+}
+
+.linkedin-logo {
+    display: block;
+    margin: 1rem auto 0;
+    transition: transform 0.3s ease;
+    width: fit-content;
+}
+
+.linkedin-icon {
+    width: 24px;
+    height: 24px;
+    fill: #7fd858;
+    opacity: 0.8;
+}
+
+.linkedin-logo:hover .linkedin-icon {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .linkedin-icon {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .logo {
+        letter-spacing: 1.5px;
+    }
+}
+
+.contact-button {
+    background: transparent;
+    border: 2px solid #7fd858;
+    color: #7fd858;
+    padding: 1rem 2rem;
+    min-width: 180px;
+    min-height: 48px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2rem 0;
+    border-radius: 4px;
+}
+
+.contact-button:hover {
+    background: #7fd85822;
+    transform: translateY(-2px);
+}
+
+.legal-footer {
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(127, 216, 88, 0.1);
+    color: rgba(127, 216, 88, 0.7);
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 1rem 2rem 2rem;
+    }
+    
+    .logo {
+        margin-bottom: 2rem;
+        font-weight: 500;
+    }
+    
+    .framework-text {
+        font-weight: 350;
+    }
+}
+
+@media (min-width: 1024px) {
+    h1 {
+        letter-spacing: 1px;
+    }
+}
