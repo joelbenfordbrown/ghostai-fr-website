@@ -57,6 +57,7 @@ h1 {
     display: block;
     font-weight: 400;
     letter-spacing: -0.3px;
+    margin-bottom: 0.15em; /* Added to space from "FRAMEWORK" */
 }
 
 .framework-text {
@@ -171,8 +172,8 @@ h2 {
 .legal-footer {
     font-size: 0.7rem;
     text-align: center;
-    margin-top: 4rem;
-    padding-top: 2rem;
+    margin-top: 2rem;       /* Reduced from 4rem */
+    padding-top: 1rem;      /* Reduced from 2rem */
     border-top: 1px solid rgba(127, 216, 88, 0.1);
     color: rgba(127, 216, 88, 0.7);
     line-height: 1.4;
