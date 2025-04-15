@@ -1,53 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const contactBtn = document.getElementById('contactBtn');
-    
-    // Protected email construction
     const emailParts = {
         user: 'admin',
-        domain: 'ghostai.fr',
-        subject: 'GHOST Framework Inquiry'
+        domain: 'ghostai.fr'
     };
 
-    const handleContact = () => {
-        try {
-            // Create visible link element for better browser compatibility
-            const mailLink = document.createElement('a');
-            const mailto = `mailto:${emailParts.user}@${emailParts.domain}?subject=${encodeURIComponent(emailParts.subject)}`;
-            
-            mailLink.href = mailto;
-            mailLink.style.display = 'none';
-            document.body.appendChild(mailLink);
-            
-            // Simulate natural click
-            const event = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            });
-            
-            mailLink.dispatchEvent(event);
-            document.body.removeChild(mailLink);
-            
-            // Fallback for mobile browsers
+    const emailSpan = document.getElementById('safeEmailLink');
+    const fullEmail = `${emailParts.user}@${emailParts.domain}`;
+    emailSpan.textContent = `Contact: ${fullEmail}`;
+
+    const copyBtn = document.getElementById('copyBtn');
+    const copyMsg = document.getElementById('copyMsg');
+
+    copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(fullEmail).then(() => {
+            copyMsg.textContent = 'Copied!';
+            copyMsg.classList.add('visible');
+
             setTimeout(() => {
-                if(!document.hidden) {
-                    window.location.href = mailto;
-                }
-            }, 100);
-            
-        } catch (e) {
-            // Ultimate fallback
-            alert('Please contact us at ' + emailParts.user + '@' + emailParts.domain);
-        }
-    };
-
-    // Event listeners
-    contactBtn.addEventListener('click', handleContact);
-    contactBtn.addEventListener('touchstart', handleContact);
-
-    // Anti-inspection protection
-    contactBtn.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        return false;
+                copyMsg.classList.remove('visible');
+                copyMsg.textContent = '';
+            }, 2000);
+        }).catch(() => {
+            alert('Copy failed. Please copy manually.');
+        });
     });
 });
