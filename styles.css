@@ -42,7 +42,7 @@ body {
 .content {
     flex: 1;
     text-align: center;
-    margin: auto 0;
+    margin: auto 0 1rem; 
 }
 
 h1 {
@@ -57,7 +57,7 @@ h1 {
     display: block;
     font-weight: 400;
     letter-spacing: -0.3px;
-    margin-bottom: 0.15em; /* Added to space from "FRAMEWORK" */
+    margin-bottom: 0.15em; 
 }
 
 .framework-text {
