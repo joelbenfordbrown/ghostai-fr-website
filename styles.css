@@ -30,18 +30,19 @@ body {
 
 /* Typography */
 h1, h2 {
-    font-weight: 600;
+    font-weight: 600; /* Kept original weight */
     line-height: 1.3;
     margin-bottom: 1rem;
 }
 
+/* MODIFIED: Adjusted H1 font size (now only acronym) */
 h1 {
-    font-size: clamp(1.5rem, 4vw, 1.8rem); /* Final H1 size from previous */
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
     color: #7fd858;
     white-space: normal;
 }
 
-/* ADDED: Style the span wrapping G2+G3 */
+/* Style the span wrapping G2+G3 */
 .hero-text h1 span.group2-3 {
     display: inline-block;
 }
@@ -81,17 +82,18 @@ a:hover, a:focus {
     padding-top: 1rem;
 }
 
+/* MODIFIED: Center header items */
 .header-content {
     display: flex;
-    flex-direction: column; /* Ensures stacked layout always */
-    align-items: flex-start; /* Keeps logo left */
+    flex-direction: column;
+    align-items: center; /* Changed from flex-start */
     padding-bottom: 2rem;
 }
 
 .logo-link {
     display: block;
-    margin-bottom: 1rem; /* Space between logo and text */
-    align-self: flex-start;
+    margin-bottom: 1rem;
+    /* align-self: flex-start; /* Removed */
     width: auto;
 }
 
@@ -104,8 +106,8 @@ a:hover, a:focus {
 }
 
 .hero-text {
-    text-align: center; /* Center text below logo */
-    width: 100%; /* Take full width below logo */
+    text-align: center;
+    width: 100%;
 }
 
 .hero-text .subtitle {
@@ -300,14 +302,16 @@ a:hover, a:focus {
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
-    /* MODIFIED: Removed desktop-specific header layout rules */
+    /* MODIFIED: Center header content on desktop too */
     .header-content {
-        /* .header-content rules for desktop removed to keep stacked layout */
-        padding-bottom: 2.5rem; /* Keep desktop padding */
+        /* flex-direction: column; is default */
+        align-items: center; /* Ensure centering persists */
+        padding-bottom: 2.5rem;
     }
 
     .logo-link {
-       /* Rules removed */
+       /* align-self: center; is default for centered items */
+       margin-bottom: 1.5rem; /* Maybe slightly more space below logo */
     }
 
     .logo-image {
@@ -315,7 +319,8 @@ a:hover, a:focus {
     }
 
     .hero-text {
-       /* Rules removed to keep centered, full-width text */
+       /* text-align: center; is default */
+       /* width: 100%; is default */
     }
 
     .site-main {
@@ -349,6 +354,3 @@ a:hover, a:focus {
        padding: 0 2rem;
     }
 }
-
-/* Optional refinement for very large screens (Not needed for V1 logo) */
-/* @media (min-width: 1440px) { ... } */
