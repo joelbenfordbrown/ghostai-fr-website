@@ -36,15 +36,18 @@ h1, h2 {
 }
 
 h1 {
-    font-size: clamp(1.5rem, 4vw, 1.8rem); /* Final H1 size from previous */
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
     color: #7fd858;
+    /* Default wrapping is fine */
     white-space: normal;
 }
 
-/* ADDED: Style the span wrapping G2+G3 */
+/* MODIFIED: Style the span wrapping G2+G3 */
 .hero-text h1 span.group2-3 {
-    display: inline-block;
+    display: inline-block; /* Encourage keeping content together */
+    /* text-align: inherit; */ /* Inherit centering from parent */
 }
+
 
 h2 {
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);
@@ -83,14 +86,14 @@ a:hover, a:focus {
 
 .header-content {
     display: flex;
-    flex-direction: column; /* Ensures stacked layout always */
-    align-items: flex-start; /* Keeps logo left */
+    flex-direction: column;
+    align-items: flex-start;
     padding-bottom: 2rem;
 }
 
 .logo-link {
     display: block;
-    margin-bottom: 1rem; /* Space between logo and text */
+    margin-bottom: 1rem;
     align-self: flex-start;
     width: auto;
 }
@@ -98,14 +101,13 @@ a:hover, a:focus {
 .logo-image {
     display: block;
     height: auto;
-    /* Original V1 logo sizing */
-    max-width: clamp(160px, 40vw, 220px);
+    max-width: clamp(180px, 75vw, 300px);
     image-rendering: auto;
 }
 
 .hero-text {
-    text-align: center; /* Center text below logo */
-    width: 100%; /* Take full width below logo */
+    text-align: center;
+    width: 100%;
 }
 
 .hero-text .subtitle {
@@ -300,22 +302,21 @@ a:hover, a:focus {
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
-    /* MODIFIED: Removed desktop-specific header layout rules */
     .header-content {
-        /* .header-content rules for desktop removed to keep stacked layout */
-        padding-bottom: 2.5rem; /* Keep desktop padding */
+        /* Layout remains stacked */
+        padding-bottom: 2.5rem;
     }
 
     .logo-link {
-       /* Rules removed */
+        /* No changes needed from base */
     }
 
     .logo-image {
-       max-width: 220px; /* Original V1 desktop size */
+       max-width: 340px;
     }
 
     .hero-text {
-       /* Rules removed to keep centered, full-width text */
+       /* Remains centered, full width */
     }
 
     .site-main {
@@ -350,5 +351,9 @@ a:hover, a:focus {
     }
 }
 
-/* Optional refinement for very large screens (Not needed for V1 logo) */
-/* @media (min-width: 1440px) { ... } */
+/* Optional refinement for very large screens */
+@media (min-width: 1440px) {
+    .logo-image {
+       max-width: 370px;
+    }
+}
