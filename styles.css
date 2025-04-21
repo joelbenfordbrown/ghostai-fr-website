@@ -11,7 +11,7 @@ html {
 
 body {
     background-color: #ffffff;
-    color: #1A3A1A;
+    color: #1A3A1A; /* Default body text */
     font-family: 'Manrope', sans-serif;
     min-height: 100vh;
     line-height: 1.6;
@@ -36,34 +36,57 @@ h1, h2 {
 }
 
 h1 {
-    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem); /* Adjusted size for acronym only */
     color: #7fd858;
     white-space: normal;
 }
 
 .hero-text h1 span.group2-3 {
-    display: inline-block;
+    display: inline-block; /* Handles wrapping */
 }
 
+/* MODIFIED: Apply flexbox layout to H2 */
 h2 {
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-    color: #2a5c2a;
-    text-align: center;
+    color: #2a5c2a; /* Section heading color */
+    text-align: center; /* Fallback alignment */
     margin-bottom: 1.5rem;
+    /* Flexbox for flanking lines */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em; /* Space between lines and text */
 }
+
+/* ADDED: Rules for the flanking lines */
+h2::before,
+h2::after {
+    content: '';
+    display: block;
+    height: 2px; /* Line thickness */
+    width: 50px; /* Line length */
+    background-color: #7fd858; /* Accent color */
+}
+/* Span for h2 text exists in HTML now, but no specific style needed yet */
+.h2-text {
+    /* No specific style needed unless for spacing/color override */
+    margin: 0; /* Reset potential default margins */
+    padding: 0; /* Reset potential default padding */
+}
+
 
 p {
     margin-bottom: 1rem;
 }
 
 a {
-    color: #2a5c2a;
+    color: #2a5c2a; /* Default link color */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover, a:focus {
-    color: #7fd858;
+    color: #7fd858; /* Hover link color */
     text-decoration: underline;
 }
 
@@ -75,10 +98,10 @@ a:hover, a:focus {
 
 /* Header */
 .site-header {
-    background-color: #000000;
+    background-color: #000000; /* Solid black */
     color: #e0e0e0;
     padding-top: 1rem;
-    position: relative;
+    position: relative; /* For pseudo-element */
 }
 
 /* Header Divider Line */
@@ -89,16 +112,18 @@ a:hover, a:focus {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background-color: #7fd858;
+    height: 3px; /* Line thickness */
+    background-color: #7fd858; /* Accent color */
 }
 
 
 .header-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centered logo/text */
     padding-bottom: 2rem;
+    position: relative;
+    z-index: 1; /* Keep content above line */
 }
 
 .logo-link {
@@ -110,7 +135,7 @@ a:hover, a:focus {
 .logo-image {
     display: block;
     height: auto;
-    max-width: clamp(160px, 40vw, 220px);
+    max-width: clamp(160px, 40vw, 220px); /* V1 logo sizing */
     image-rendering: auto;
 }
 
@@ -136,7 +161,7 @@ a:hover, a:focus {
 /* Main Content Area */
 .site-main {
     flex: 1;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Solid white body */
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
 }
@@ -149,12 +174,26 @@ a:hover, a:focus {
 }
 
 .content-box {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Light grey background */
+    color: #1A3A1A; /* Default dark green text inside */
     border-radius: 12px;
     padding: 1.5rem;
-    /* MODIFIED: Changed border color */
-    border: 1px solid #7fd858; /* Using accent green */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #7fd858; /* Accent green border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle dark shadow */
+}
+
+/* Styling for content inside the boxes */
+.content-box strong {
+     color: inherit; /* Inherit dark green */
+}
+.content-box a {
+    color: #2a5c2a; /* Link color inside box */
+    text-decoration: none;
+}
+.content-box a:hover,
+.content-box a:focus {
+    color: #7fd858; /* Hover color inside box */
+    text-decoration: underline;
 }
 
 /* Styling for moved attribution content inside contact box */
@@ -162,12 +201,13 @@ a:hover, a:focus {
     text-align: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e0e0e0; /* Keep internal separator subtle */
+    border-bottom: 1px solid #e0e0e0; /* Light separator */
 }
 
 .attribution-text {
     margin-bottom: 0.5rem;
     font-weight: 500;
+    color: inherit; /* Inherit dark green */
 }
 
 .linkedin-link {
@@ -177,23 +217,25 @@ a:hover, a:focus {
     font-weight: 500;
 }
 
-.linkedin-icon {
+/* VERIFY: This should be the correct CSS for the icon */
+.content-box .linkedin-icon {
     width: 20px;
     height: 20px;
-    fill: #2a5c2a;
+    fill: #2a5c2a; /* Icon color inside box */
     transition: fill 0.3s ease;
 }
-.linkedin-link:hover .linkedin-icon,
-.linkedin-link:focus .linkedin-icon {
-    fill: #7fd858;
+.content-box .linkedin-link:hover .linkedin-icon,
+.content-box .linkedin-link:focus .linkedin-icon {
+    fill: #7fd858; /* Hover icon color */
 }
+
 
 .contact-box {
     text-align: center;
 }
-.contact-email {
+.content-box .contact-email {
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: #1A3A1A;
+    color: #1A3A1A; /* Text color inside box */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -205,41 +247,41 @@ a:hover, a:focus {
     align-items: center;
     gap: 0.5rem;
     user-select: none;
-    background-color: #e9ecef;
+    background-color: #e9ecef; /* Email row background */
     padding: 0.3rem 0.8rem;
     border-radius: 6px;
-    border: 1px solid #ced4da;
+    border: 1px solid #ced4da; /* Email row border */
 }
 
 #safeEmailLink {
     font-weight: 500;
-    color: #1A3A1A;
+    color: #1A3A1A; /* Email text */
     transition: color 0.3s ease;
     cursor: text;
 }
 
 .email-row:hover #safeEmailLink {
-    color: #7fd858;
+    color: #7fd858; /* Email text hover */
 }
-
 #safeEmailLink.email-copied {
-    color: #7fd858 !important;
+    color: #7fd858 !important; /* Email text copied */
 }
 
 
-.copy-button {
+.content-box .copy-button {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    color: #2a5c2a;
+    color: #2a5c2a; /* Copy button icon color */
     display: inline-flex;
     align-items: center;
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease.
 }
 
-.copy-button:hover, .copy-button:focus {
-    color: #7fd858;
+.content-box .copy-button:hover,
+.content-box .copy-button:focus {
+    color: #7fd858; /* Copy button hover color */
     transform: scale(1.1);
 }
 
@@ -253,16 +295,16 @@ a:hover, a:focus {
 .copy-icon.flipped {
     transform: scaleX(-1);
 }
-.copy-button:hover .copy-icon.flipped,
-.copy-button:focus .copy-icon.flipped {
+.content-box .copy-button:hover .copy-icon.flipped,
+.content-box .copy-button:focus .copy-icon.flipped {
      transform: scaleX(-1) scale(1.1);
 }
 
 
-.copy-msg {
+.content-box .copy-msg {
     display: inline-block;
     font-size: 0.85rem;
-    color: #2a5c2a;
+    color: #1A3A1A; /* Copy message text color */
     opacity: 0;
     transition: opacity 0.4s ease;
     margin-top: 0.25rem;
@@ -287,13 +329,13 @@ a:hover, a:focus {
 
 /* Footer */
 .site-footer {
-    background-color: #000000;
+    background-color: #000000; /* Solid black */
     color: #7fd858;
     margin-top: auto;
-    position: relative;
+    position: relative; /* For pseudo-element */
 }
 
-/* Footer Divider Line */
+/* Footer Divider Line (Simple) */
 .site-footer::before {
     content: '';
     display: block;
@@ -301,8 +343,8 @@ a:hover, a:focus {
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background-color: #7fd858;
+    height: 3px; /* Line thickness */
+    background-color: #7fd858; /* Accent color */
 }
 
 .footer-content {
@@ -335,7 +377,7 @@ a:hover, a:focus {
     }
 
     .logo-image {
-       max-width: 220px;
+       max-width: 220px; /* V1 logo desktop size */
     }
 
     .hero-text {
