@@ -10,22 +10,22 @@ html {
 }
 
 body {
-    background-color: #ffffff; 
-    color: #1A3A1A; 
+    background-color: #ffffff;
+    color: #1A3A1A;
     font-family: 'Manrope', sans-serif;
     min-height: 100vh;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
-    font-size: 16px; 
+    font-size: 16px;
     display: flex;
     flex-direction: column;
 }
 
 .container {
     width: 100%;
-    max-width: 1100px; 
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 1.5rem; 
+    padding: 0 1.5rem;
 }
 
 /* Typography */
@@ -36,13 +36,19 @@ h1, h2 {
 }
 
 h1 {
-    font-size: clamp(1.5rem, 4vw, 1.8rem); 
-    color: #7fd858; 
+    font-size: clamp(1.5rem, 4vw, 1.8rem); /* Final H1 size from previous */
+    color: #7fd858;
+    white-space: normal;
+}
+
+/* ADDED: Style the span wrapping G2+G3 */
+.hero-text h1 span.group2-3 {
+    display: inline-block;
 }
 
 h2 {
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-    color: #2a5c2a; 
+    color: #2a5c2a;
     text-align: center;
     margin-bottom: 1.5rem;
 }
@@ -52,13 +58,13 @@ p {
 }
 
 a {
-    color: #2a5c2a; 
+    color: #2a5c2a;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover, a:focus {
-    color: #7fd858; 
+    color: #7fd858;
     text-decoration: underline;
 }
 
@@ -71,40 +77,40 @@ a:hover, a:focus {
 /* Header */
 .site-header {
     background-color: #000000;
-    color: #e0e0e0; 
-    padding-top: 1rem; 
+    color: #e0e0e0;
+    padding-top: 1rem;
 }
 
 .header-content {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    padding-bottom: 2rem; 
+    flex-direction: column; /* Ensures stacked layout always */
+    align-items: flex-start; /* Keeps logo left */
+    padding-bottom: 2rem;
 }
 
 .logo-link {
     display: block;
-    margin-bottom: 1rem;
-    align-self: flex-start; 
+    margin-bottom: 1rem; /* Space between logo and text */
+    align-self: flex-start;
+    width: auto;
 }
 
-/* MODIFIED: Adjusted max value in base clamp for mobile logo */
 .logo-image {
     display: block;
     height: auto;
-    /* Scales on mobile, now caps at 220px (matching desktop) */
-    max-width: clamp(160px, 40vw, 220px); 
+    /* Original V1 logo sizing */
+    max-width: clamp(160px, 40vw, 220px);
     image-rendering: auto;
 }
 
 .hero-text {
-    text-align: center; 
-    width: 100%; 
+    text-align: center; /* Center text below logo */
+    width: 100%; /* Take full width below logo */
 }
 
 .hero-text .subtitle {
     font-size: clamp(1rem, 3vw, 1.25rem);
-    color: rgba(127, 216, 88, 0.9); 
+    color: rgba(127, 216, 88, 0.9);
     margin-bottom: 0.75rem;
     font-weight: 300;
 }
@@ -112,39 +118,39 @@ a:hover, a:focus {
 .hero-text .slogan {
     font-size: clamp(1rem, 3vw, 1.2rem);
     font-style: italic;
-    color: rgba(127, 216, 88, 0.95); 
+    color: rgba(127, 216, 88, 0.95);
     font-weight: 400;
 }
 
 /* Main Content Area */
 .site-main {
-    flex: 1; 
+    flex: 1;
     background-color: #ffffff;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
 }
 
 /* Content Sections */
-.framework-section, 
-.cta-section, 
+.framework-section,
+.cta-section,
 .contact-section {
     margin-bottom: 2.5rem;
 }
 
 .content-box {
-    background-color: #f8f9fa; 
-    border-radius: 12px; 
+    background-color: #f8f9fa;
+    border-radius: 12px;
     padding: 1.5rem;
-    border: 1px solid #e9ecef; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 /* Styling for moved attribution content inside contact box */
 .contact-box .attribution-content {
     text-align: center;
-    margin-bottom: 1.5rem; 
-    padding-bottom: 1.5rem; 
-    border-bottom: 1px solid #e0e0e0; 
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .attribution-text {
@@ -153,21 +159,21 @@ a:hover, a:focus {
 }
 
 .linkedin-link {
-    display: inline-flex; 
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem; 
+    gap: 0.5rem;
     font-weight: 500;
 }
 
 .linkedin-icon {
     width: 20px;
     height: 20px;
-    fill: #2a5c2a; 
+    fill: #2a5c2a;
     transition: fill 0.3s ease;
 }
-.linkedin-link:hover .linkedin-icon, 
+.linkedin-link:hover .linkedin-icon,
 .linkedin-link:focus .linkedin-icon {
-    fill: #7fd858; 
+    fill: #7fd858;
 }
 
 .contact-box {
@@ -175,7 +181,7 @@ a:hover, a:focus {
 }
 .contact-email {
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: #1A3A1A; 
+    color: #1A3A1A;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -184,10 +190,10 @@ a:hover, a:focus {
 
 .email-row {
     display: inline-flex;
-    align-items: center; 
-    gap: 0.5rem; 
-    user-select: none; 
-    background-color: #e9ecef; 
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+    background-color: #e9ecef;
     padding: 0.3rem 0.8rem;
     border-radius: 6px;
     border: 1px solid #ced4da;
@@ -195,17 +201,17 @@ a:hover, a:focus {
 
 #safeEmailLink {
     font-weight: 500;
-    color: #1A3A1A; 
-    transition: color 0.3s ease; 
-    cursor: text; 
+    color: #1A3A1A;
+    transition: color 0.3s ease;
+    cursor: text;
 }
 
 .email-row:hover #safeEmailLink {
-    color: #7fd858; 
+    color: #7fd858;
 }
 
 #safeEmailLink.email-copied {
-    color: #7fd858 !important; 
+    color: #7fd858 !important;
 }
 
 
@@ -213,31 +219,31 @@ a:hover, a:focus {
     background: none;
     border: none;
     padding: 0;
-    cursor: pointer; 
-    color: #2a5c2a; 
+    cursor: pointer;
+    color: #2a5c2a;
     display: inline-flex;
     align-items: center;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .copy-button:hover, .copy-button:focus {
-    color: #7fd858; 
-    transform: scale(1.1); 
+    color: #7fd858;
+    transform: scale(1.1);
 }
 
 .copy-icon {
     width: 1rem;
     height: 1rem;
-    fill: currentColor; 
-    transition: transform 0.2s ease; 
+    fill: currentColor;
+    transition: transform 0.2s ease;
 }
 
 .copy-icon.flipped {
     transform: scaleX(-1);
 }
-.copy-button:hover .copy-icon.flipped, 
+.copy-button:hover .copy-icon.flipped,
 .copy-button:focus .copy-icon.flipped {
-     transform: scaleX(-1) scale(1.1); 
+     transform: scaleX(-1) scale(1.1);
 }
 
 
@@ -254,7 +260,7 @@ a:hover, a:focus {
     opacity: 1;
 }
 
-.sr-only { 
+.sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -270,52 +276,46 @@ a:hover, a:focus {
 /* Footer */
 .site-footer {
     background-color: #000000;
-    color: #7fd858; 
-    margin-top: auto; 
+    color: #7fd858;
+    margin-top: auto;
 }
 
 .footer-content {
-    display: flex;          
-    align-items: center;    
+    display: flex;
+    align-items: center;
     justify-content: center;
-    min-height: 4rem;       
-    padding-top: 1.5rem;    
-    padding-bottom: 1.5rem; 
-    text-align: center;     
+    min-height: 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
 }
 
 .legal-text {
     font-size: 0.75rem;
     line-height: 1.5;
-    max-width: 800px; 
-    margin: 0; 
+    max-width: 800px;
+    margin: 0;
 }
 
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
+    /* MODIFIED: Removed desktop-specific header layout rules */
     .header-content {
-        flex-direction: row; 
-        justify-content: space-between; 
-        align-items: flex-start; 
-        padding-bottom: 2.5rem; 
+        /* .header-content rules for desktop removed to keep stacked layout */
+        padding-bottom: 2.5rem; /* Keep desktop padding */
     }
 
     .logo-link {
-        margin-bottom: 0; 
-        flex-shrink: 0; 
-        margin-right: 2rem; 
-        align-self: auto; 
+       /* Rules removed */
     }
-    
+
     .logo-image {
-       max-width: 220px; /* Keep consistent size for tablet/desktop */
+       max-width: 220px; /* Original V1 desktop size */
     }
 
     .hero-text {
-        text-align: left; 
-        max-width: 60%; 
-        width: auto; 
+       /* Rules removed to keep centered, full-width text */
     }
 
     .site-main {
@@ -326,26 +326,29 @@ a:hover, a:focus {
     .content-box {
         padding: 2rem;
     }
-        
+
     .contact-box .attribution-content {
-        margin-bottom: 2rem; 
-        padding-bottom: 2rem; 
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
     }
 
     .footer-content {
-         padding-top: 2.5rem;  
+         padding-top: 2.5rem;
          padding-bottom: 2.5rem;
-         min-height: 6rem;     
+         min-height: 6rem;
     }
 
 }
 
 @media (min-width: 1024px) {
     body {
-        font-size: 17px; 
+        font-size: 17px;
     }
-    
+
     .container {
-       padding: 0 2rem; 
+       padding: 0 2rem;
     }
 }
+
+/* Optional refinement for very large screens (Not needed for V1 logo) */
+/* @media (min-width: 1440px) { ... } */
