@@ -6,7 +6,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Needed for smooth scroll */
 }
 
 body {
@@ -151,8 +151,7 @@ a:hover, a:focus {
     font-style: italic;
     color: rgba(127, 216, 88, 0.95);
     font-weight: 400;
-    /* MODIFIED: Reduce base bottom margin */
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem; /* Base margin for mobile */
 }
 
 /* Main Content Area */
@@ -369,6 +368,44 @@ a:hover, a:focus {
     margin: 0;
 }
 
+/* --- ADDED: Static Back to Top Button Styles --- */
+.back-to-top-container {
+    /* Uses .container max-width and padding */
+    text-align: right; /* Align button to the right */
+    margin-top: 1rem; /* Space above the button */
+    /* No padding-bottom here, uses main padding */
+}
+
+.back-to-top-static {
+    display: inline-block; /* Allows right alignment via text-align */
+    background-color: #7fd858; /* Accent Green */
+    color: #ffffff; /* White arrow */
+    border: none;
+    border-radius: 4px; /* Slightly rounded square */
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem; /* Icon size */
+    line-height: 40px; /* Helps vertical icon centering */
+    text-align: center; /* Helps horizontal icon centering */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    vertical-align: middle; /* Align button nicely if text flows near it */
+}
+
+.back-to-top-static:hover {
+    background-color: #6ac048; /* Darker green on hover */
+}
+
+.back-to-top-static svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle; /* Fine-tune icon vertical alignment */
+    /* Ensure SVG aligns correctly within button */
+    display: inline-block;
+    margin-top: -0.1em; /* Small adjustment if needed */
+}
+/* --- End Static Back to Top Button Styles --- */
+
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
@@ -389,7 +426,9 @@ a:hover, a:focus {
        /* Centered, full-width */
     }
 
-    /* Slogan margin on tablet/narrow desktop will now be 0.5rem */
+    .hero-text .slogan {
+       margin-bottom: 0.5rem; /* Keep reduced margin on tablet */
+    }
 
     .site-main {
         padding-top: 4rem;
@@ -409,6 +448,13 @@ a:hover, a:focus {
          padding-top: 2.5rem;
          padding-bottom: 2.5rem;
          min-height: 6rem;
+    }
+
+    .back-to-top-static { /* Optional: Slightly larger on desktop */
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        line-height: 45px;
     }
 
 }
