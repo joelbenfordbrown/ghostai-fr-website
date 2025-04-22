@@ -142,7 +142,7 @@ a:hover, a:focus {
 .hero-text .subtitle {
     font-size: clamp(1rem, 3vw, 1.25rem);
     color: rgba(127, 216, 88, 0.9);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.75rem; /* Keep this specific margin */
     font-weight: 300;
 }
 
@@ -151,7 +151,8 @@ a:hover, a:focus {
     font-style: italic;
     color: rgba(127, 216, 88, 0.95);
     font-weight: 400;
-    /* Base margin-bottom: 1rem applies here on mobile */
+    /* MODIFIED: Reduce base bottom margin */
+    margin-bottom: 0.5rem;
 }
 
 /* Main Content Area */
@@ -280,7 +281,7 @@ a:hover, a:focus {
     color: #2a5c2a; /* Copy button icon color */
     display: inline-flex;
     align-items: center;
-    transition: transform 0.2s ease, color 0.2s ease.
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .content-box .copy-button:hover,
@@ -373,7 +374,7 @@ a:hover, a:focus {
 @media (min-width: 768px) {
     .header-content {
         align-items: center;
-        padding-bottom: 2.5rem; /* Tablet padding */
+        padding-bottom: 2.5rem; /* Base desktop padding */
     }
 
     .logo-link {
@@ -388,9 +389,7 @@ a:hover, a:focus {
        /* Centered, full-width */
     }
 
-    .hero-text .slogan {
-       /* No extra margin needed here, default 1rem */
-    }
+    /* Slogan margin on tablet/narrow desktop will now be 0.5rem */
 
     .site-main {
         padding-top: 4rem;
@@ -414,7 +413,6 @@ a:hover, a:focus {
 
 }
 
-/* --- MODIFIED: Changed min-width and added specific slogan margin --- */
 @media (min-width: 1200px) { /* Target wider screens */
     .header-content {
         /* Increase overall padding slightly more */
@@ -422,7 +420,7 @@ a:hover, a:focus {
     }
     .hero-text .slogan {
         /* Add specific margin for wide screens */
-        margin-bottom: 2rem;
+        margin-bottom: 2rem; /* Restores significant space only here */
     }
 }
 
