@@ -93,7 +93,7 @@ a:hover, a:focus {
 
 /* Header */
 .site-header {
-    background-color: #000000; /* Solid black */
+    background-color: #061103; /* Dark Green */
     color: #e0e0e0;
     padding-top: 1rem;
     position: relative; /* For pseudo-element */
@@ -333,7 +333,7 @@ a:hover, a:focus {
 
 /* Footer */
 .site-footer {
-    background-color: #000000; /* Solid black */
+    background-color: #061103; /* Dark Green */
     color: #7fd858;
     margin-top: auto;
     position: relative; /* For pseudo-element */
