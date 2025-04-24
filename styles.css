@@ -11,7 +11,7 @@ html {
 
 body {
     background-color: #ffffff;
-    color: #1A3A1A; /* Default body text */
+    color: #2A5C2A; /* Default body text */
     font-family: 'Manrope', sans-serif;
     min-height: 100vh;
     line-height: 1.6;
@@ -37,7 +37,7 @@ h1, h2 {
 
 h1 {
     font-size: clamp(1.2rem, 3.5vw, 1.6rem); /* Adjusted size for acronym only */
-    color: #7fd858;
+    color: #2a5c2a;
     white-space: normal;
 }
 
@@ -93,7 +93,7 @@ a:hover, a:focus {
 
 /* Header */
 .site-header {
-    background-color: #061103; /* Dark Green */
+    background-color: #f8f9fa; /* Light grey background */
     color: #e0e0e0;
     padding-top: 1rem;
     position: relative; /* For pseudo-element */
@@ -141,7 +141,7 @@ a:hover, a:focus {
 
 .hero-text .subtitle {
     font-size: clamp(1rem, 3vw, 1.25rem);
-    color: rgba(127, 216, 88, 0.9);
+    color: #2a5c2a;
     margin-bottom: 0.75rem; /* Keep this specific margin */
     font-weight: 300;
 }
@@ -149,7 +149,7 @@ a:hover, a:focus {
 .hero-text .slogan {
     font-size: clamp(1rem, 3vw, 1.2rem);
     font-style: italic;
-    color: rgba(127, 216, 88, 0.95);
+    color: #2a5c2a;
     font-weight: 400;
     margin-bottom: 0.5rem; /* Base margin for mobile */
 }
@@ -171,7 +171,7 @@ a:hover, a:focus {
 
 .content-box {
     background-color: #f8f9fa; /* Light grey background */
-    color: #1A3A1A; /* Default dark green text inside */
+    color: #2A5C2A; /* Default dark green text inside */
     border-radius: 12px;
     padding: 1.5rem;
     border: 1px solid #7fd858; /* Accent green border */
@@ -239,7 +239,7 @@ a:hover, a:focus {
 }
 .content-box .contact-email {
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: #1A3A1A; /* Text color inside box */
+    color: #2A5C2A; /* Text color inside box */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -254,12 +254,12 @@ a:hover, a:focus {
     background-color: #e9ecef; /* Email row background */
     padding: 0.3rem 0.8rem;
     border-radius: 6px;
-    border: 1px solid #ced4da; /* Email row border */
+    border: 1px solid #7fd858; /* Email row border */
 }
 
 #safeEmailLink {
     font-weight: 500;
-    color: #1A3A1A; /* Email text */
+    color: #2A5C2A; /* Email text */
     transition: color 0.3s ease;
     cursor: text;
 }
@@ -277,7 +277,7 @@ a:hover, a:focus {
     border: none;
     padding: 0;
     cursor: pointer;
-    color: #2a5c2a; /* Copy button icon color */
+    color: #42A11A; /* Copy button icon color */
     display: inline-flex;
     align-items: center;
     transition: transform 0.2s ease, color 0.2s ease;
@@ -308,7 +308,7 @@ a:hover, a:focus {
 .content-box .copy-msg {
     display: inline-block;
     font-size: 0.85rem;
-    color: #1A3A1A; /* Copy message text color */
+    color: #2A5C2A; /* Copy message text color */
     opacity: 0;
     transition: opacity 0.4s ease;
     margin-top: 0.25rem;
@@ -333,8 +333,8 @@ a:hover, a:focus {
 
 /* Footer */
 .site-footer {
-    background-color: #061103; /* Dark Green */
-    color: #7fd858;
+    background-color: #f8f9fa; /* Light grey background */
+    color: #2A5C2A;
     margin-top: auto;
     position: relative; /* For pseudo-element */
 }
