@@ -143,7 +143,7 @@ a:hover, a:focus {
     font-size: clamp(1rem, 3vw, 1.25rem);
     color: #2a5c2a;
     margin-bottom: 0.75rem; /* Keep this specific margin */
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .hero-text .slogan {
