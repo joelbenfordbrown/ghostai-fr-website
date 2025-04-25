@@ -631,8 +631,8 @@ body.dark-mode {
     --body-bg: #181818;
     --text-color: #E0E0E0; /* Light grey paragraphs */
     --text-color-light: rgba(224, 224, 224, 0.7);
-    --header-bg: #121212;
-    --footer-bg: #121212;
+    --header-bg: #181818;
+    --footer-bg: #181818;
     --header-text: var(--text-color); /* Light Grey */
     --footer-text: var(--text-color); /* Light Grey */
     --accent-color: #7fd858;
@@ -641,8 +641,8 @@ body.dark-mode {
     --logo-color: var(--text-color); /* Light Grey H1 */
     --link-color: #a0ffa0; /* Lighter green */
     --link-hover-color: var(--accent-color); /* Bright Green hover */
-    --box-bg: #121212;
-    --box-border: var(--accent-color);
+    --box-bg: #181818;
+    --box-border: rgba(127, 216, 88, 0.1);
     --box-shadow: rgba(127, 216, 88, 0.1);
     --icon-fill: var(--link-color); /* Light Green default icon */
     --icon-hover-fill: var(--accent-color); /* Bright Green icon hover */
@@ -683,7 +683,7 @@ body.dark-mode {
     color: var(--link-hover-color);
 }
 .dark-mode .contact-box .attribution-content {
-    border-bottom-color: var(--email-row-border);
+    border-bottom-color: rgba(127, 216, 88, 0.1);
 }
 .dark-mode .attribution-text {
     color: var(--text-color);
