@@ -637,8 +637,8 @@ body.dark-mode {
     --footer-text: var(--text-color); /* Light Grey */
     --accent-color: #7fd858;
     --accent-color-darker: #6ac048;
-    --heading-color: var(--accent-color); /* Green H2 */
-    --logo-color: var(--accent-color); /* Green H1 */
+    --heading-color: var(--text-color); /* Light Grey */
+    --logo-color: var(--text-color); /* Light Grey H1 */
     --link-color: #a0ffa0; /* Lighter green */
     --link-hover-color: var(--accent-color); /* Bright Green hover */
     --box-bg: #121212;
