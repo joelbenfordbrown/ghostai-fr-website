@@ -1,69 +1,170 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Email Copy Functionality ---
-    const emailParts = {
-        user: 'admin',
-        domain: 'ghostai.fr'
-    };
-    const fullEmail = `${emailParts.user}@${emailParts.domain}`;
 
+    // --- Theme Toggle Functionality ---
+    const themeCheckbox = document.getElementById('theme-checkbox');
+    const logoImage = document.getElementById('logo-img');
+    const lightLogoSrc = '/assets/logos/ghost-logo.png';
+    const lightLogoSrcset = '/assets/logos/ghost-logo-2.png 2x';
+    const darkLogoSrc = '/assets/logos/dark mode logos/ghost-logo.png';
+    const darkLogoSrcset = '/assets/logos/dark mode logos/ghost-logo-2.png 2x';
+    const lightThemeColor = '#f8f9fa';
+    const darkThemeColor = '#000000';
+
+    function setTheme(isDarkMode, updateStorage = true) {
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            if (logoImage) {
+                logoImage.src = darkLogoSrc;
+                logoImage.srcset = darkLogoSrcset;
+            }
+            if (updateStorage) localStorage.setItem('theme', 'dark');
+            if(themeCheckbox) themeCheckbox.checked = true;
+            const darkMeta = document.querySelector('meta[name="theme-color"][media="(prefers-color-scheme: dark)"]');
+            if (darkMeta) darkMeta.setAttribute('content', darkThemeColor);
+            const genericMeta = document.querySelector('meta[name="theme-color"]:not([media])');
+            if(genericMeta) genericMeta.setAttribute('content', darkThemeColor);
+        } else {
+            document.body.classList.remove('dark-mode');
+            if (logoImage) {
+                logoImage.src = lightLogoSrc;
+                logoImage.srcset = lightLogoSrcset;
+            }
+            if (updateStorage) localStorage.setItem('theme', 'light');
+             if(themeCheckbox) themeCheckbox.checked = false;
+            const lightMeta = document.querySelector('meta[name="theme-color"][media="(prefers-color-scheme: light)"]');
+            if (lightMeta) lightMeta.setAttribute('content', lightThemeColor);
+            const genericMeta = document.querySelector('meta[name="theme-color"]:not([media])');
+            if(genericMeta) genericMeta.setAttribute('content', lightThemeColor);
+        }
+    }
+
+    // Set Initial Theme to Light - Ignoring storage/prefs on first load
+    setTheme(false, false);
+    // If you WANT to respect storage/prefs on load, use the previous logic here instead.
+    // Example (respecting storage/prefs):
+    // const savedTheme = localStorage.getItem('theme');
+    // const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    //     setTimeout(() => setTheme(true, true), 0); // Apply dark if needed
+    // } else {
+    //     localStorage.setItem('theme', 'light'); // Ensure storage matches light
+    // }
+
+
+    // Add listener for toggle change
+    if (themeCheckbox) {
+        themeCheckbox.addEventListener('change', () => {
+            setTheme(themeCheckbox.checked, true); // User toggle always updates storage
+        });
+    } else {
+         console.warn('Theme toggle checkbox not found.');
+    }
+
+
+    // --- Hamburger Menu Functionality ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = mainNav.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.classList.toggle('active');
+        });
+
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const headerHeightEstimate = 60;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerHeightEstimate;
+                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    mainNav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+
+         document.addEventListener('click', (event) => {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+    } else {
+         console.warn('Menu toggle button or main nav element not found.');
+    }
+
+
+    // --- Email Copy Functionality ---
+    const emailParts = { user: 'admin', domain: 'ghostai.fr' };
+    const fullEmail = `${emailParts.user}@${emailParts.domain}`;
     const emailSpan = document.getElementById('safeEmailLink');
     const copyBtn = document.getElementById('copyBtn');
     const copyMsg = document.getElementById('copyMsg');
-
     if (emailSpan && copyBtn && copyMsg) {
+        // MODIFIED: Add pointer-events control via JS for email text hover
+        const emailRow = emailSpan.closest('.email-row');
+
         emailSpan.textContent = `Contact: ${fullEmail}`;
         copyBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(fullEmail).then(() => {
-                // --- SUCCESS ---
                 copyMsg.textContent = 'Email Copied!';
                 copyMsg.classList.add('visible');
+                // Ensure row hover state is active if button is clicked fast
+                 if (emailRow) emailRow.classList.add('copy-active');
                 emailSpan.classList.add('email-copied');
                 setTimeout(() => {
                     copyMsg.classList.remove('visible');
                     emailSpan.classList.remove('email-copied');
-                    setTimeout(() => {
-                       if (!copyMsg.classList.contains('visible')) {
-                           copyMsg.textContent = '';
-                       }
-                    }, 400);
+                     if (emailRow) emailRow.classList.remove('copy-active');
+                    setTimeout(() => { if (!copyMsg.classList.contains('visible')) { copyMsg.textContent = ''; } }, 400);
                 }, 2500);
             }).catch((err) => {
-                // --- FAILURE ---
                 console.error('Clipboard copy failed: ', err);
                 copyMsg.textContent = 'Copy Failed';
                 copyMsg.classList.add('visible');
                  setTimeout(() => {
                     copyMsg.classList.remove('visible');
-                     setTimeout(() => {
-                       if (!copyMsg.classList.contains('visible')) {
-                           copyMsg.textContent = '';
-                       }
-                    }, 400);
+                     setTimeout(() => { if (!copyMsg.classList.contains('visible')) { copyMsg.textContent = ''; } }, 400);
                 }, 3000);
             });
         });
+
+         // Add hover listeners to the BUTTON to toggle a class on the ROW
+         if(emailRow && copyBtn && emailSpan) {
+            copyBtn.addEventListener('mouseenter', () => {
+                 emailRow.classList.add('button-hovered');
+             });
+             copyBtn.addEventListener('mouseleave', () => {
+                 emailRow.classList.remove('button-hovered');
+             });
+              copyBtn.addEventListener('focus', () => {
+                 emailRow.classList.add('button-hovered');
+             });
+             copyBtn.addEventListener('blur', () => {
+                 emailRow.classList.remove('button-hovered');
+             });
+         }
+
     } else {
-        console.warn('Required elements for email copy functionality not found:', {
-            emailSpanExists: !!emailSpan,
-            copyBtnExists: !!copyBtn,
-            copyMsgExists: !!copyMsg
-        });
+        console.warn('Required elements for email copy functionality not found:', { emailSpanExists: !!emailSpan, copyBtnExists: !!copyBtn, copyMsgExists: !!copyMsg });
     }
 
     // --- Back to Top Button Functionality (Static Version) ---
-    // Get reference using the correct ID
     const backToTopButton = document.getElementById("backToTopBtnStatic");
-
-    // REMOVED Scroll logic
-    // window.addEventListener('scroll', () => { ... });
-
     if (backToTopButton) {
-        // Add click listener for scrolling
         backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Smooth scroll animation
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     } else {
         console.warn('Back to Top button element (#backToTopBtnStatic) not found.');

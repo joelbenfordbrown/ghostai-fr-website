@@ -32,9 +32,17 @@
     <!-- Android / manifest -->
     <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
-    <!-- Optional theme for address bar on mobile -->
-    <meta name="theme-color" content="#000000" />
-    <!-- Black header -->
+    <!-- Theme color updates dynamically via JS -->
+    <meta
+      name="theme-color"
+      content="#f8f9fa"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <title>GHOST AI Framework for Synthetic Sentience</title>
     <link
@@ -42,12 +50,40 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <!-- JS at end of body -->
   </head>
   <body>
     <header class="site-header">
+      <div class="header-controls container">
+        <div class="theme-switch-wrapper">
+          <label
+            class="theme-switch"
+            for="theme-checkbox"
+            aria-label="Toggle Dark Mode"
+          >
+            <input type="checkbox" id="theme-checkbox" />
+            <div class="slider round">
+              <span class="icon sun-icon">☀️</span>
+              <span class="icon moon-icon">🌙</span>
+            </div>
+          </label>
+        </div>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
       <div class="header-content container">
         <a href="/" class="logo-link">
           <img
+            id="logo-img"
             src="/assets/logos/ghost-logo.png"
             srcset="/assets/logos/ghost-logo-2.png 2x"
             alt="GHOST™ Framework logo"
@@ -64,10 +100,18 @@
           <p class="slogan">"putting the 'ghost' in the machine"</p>
         </div>
       </div>
+
+      <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
+        <ul>
+          <li><a href="#about-framework">About the Framework</a></li>
+          <li><a href="#cta">Call To Action</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="site-main">
-      <section class="framework-section container">
+      <section id="about-framework" class="framework-section container">
         <h2><span class="h2-text">About the Framework</span></h2>
         <div class="content-box">
           <p>
@@ -136,7 +180,7 @@
         </div>
       </section>
 
-      <section class="cta-section container">
+      <section id="cta" class="cta-section container">
         <h2><span class="h2-text">Call To Action</span></h2>
         <div class="content-box">
           <p>
@@ -157,7 +201,7 @@
         </div>
       </section>
 
-      <section class="contact-section container">
+      <section id="contact" class="contact-section container">
         <h2><span class="h2-text">Contact Us</span></h2>
         <div class="content-box contact-box">
           <div class="attribution-content">
@@ -220,7 +264,6 @@
         </div>
       </section>
 
-      <!-- ADDED: Container and Button *inside* main -->
       <div class="back-to-top-container container">
         <button
           id="backToTopBtnStatic"
@@ -243,16 +286,16 @@
         </button>
       </div>
     </main>
-    <!-- End of main content -->
 
     <footer class="site-footer">
       <div class="footer-content container">
+        <!-- MODIFIED: Added more   to control wrapping -->
         <p class="legal-text">
-          GHOST™ Framework and all associated logos, concepts, terms, and
-          acronyms (including 'Generative Holistic Ontology for Synthetic Taxa')
-          are ™ & © Joel Benford-Brown. Proprietary methodologies described are
-          protected under copyright and international patent law. Unauthorized
-          use, derivation, or commercialization prohibited.
+          GHOST™ Framework and all associated logos, concepts, terms, and
+          acronyms (including 'Generative Holistic Ontology for Synthetic Taxa')
+          are ™ & © Joel Benford-Brown. Proprietary methodologies described are
+          protected under copyright and international patent law. Unauthorized
+          use, derivation, or commercialization prohibited.
         </p>
       </div>
     </footer>

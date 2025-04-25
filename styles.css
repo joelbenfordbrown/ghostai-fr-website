@@ -5,13 +5,49 @@
     box-sizing: border-box;
 }
 
+/* CSS Variables Definition */
+:root {
+    /* Light Mode Colors (V.1.5 BASELINE) */
+    --body-bg: #ffffff;
+    --text-color: #2A5C2A;
+    --text-color-light: rgba(42, 92, 42, 0.8);
+    --header-bg: #f8f9fa;
+    --footer-bg: #f8f9fa;
+    --header-text: #2A5C2A;
+    --footer-text: #2A5C2A;
+    --accent-color: #7fd858;
+    --accent-color-darker: #6ac048;
+    --heading-color: #2a5c2a;
+    --logo-color: #2a5c2a;
+    --link-color: #2a5c2a;
+    --link-hover-color: #7fd858; /* Accent Green for hover */
+    --box-bg: #f8f9fa;
+    --box-border: #7fd858;
+    --box-shadow: rgba(0,0,0,0.05);
+    --icon-fill: #2a5c2a; /* LinkedIn Icon */
+    --icon-hover-fill: #7fd858; /* LinkedIn Icon Hover */
+    --divider-color: #7fd858;
+    --email-row-bg: #e9ecef;
+    --email-row-border: #7fd858;
+    --copy-button-color: #42A11A; /* Copy Button Icon */
+    --copy-button-hover-color: var(--icon-hover-fill); /* Copy Button Hover = Accent Green */
+    --toggle-bg: #ccc;
+    --toggle-slider: #fff;
+    --toggle-icon: #2A5C2A;
+    --nav-bg: #ffffff;
+    --nav-link: #2a5c2a;
+    --nav-link-hover: #7fd858;
+    --nav-border: #e0e0e0;
+    --menu-bar: var(--accent-color);
+}
+
 html {
-    scroll-behavior: smooth; /* Needed for smooth scroll */
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #ffffff;
-    color: #2A5C2A; /* Default body text */
+    background-color: var(--body-bg);
+    color: var(--text-color);
     font-family: 'Manrope', sans-serif;
     min-height: 100vh;
     line-height: 1.6;
@@ -19,6 +55,7 @@ body {
     font-size: 16px;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -36,33 +73,33 @@ h1, h2 {
 }
 
 h1 {
-    font-size: clamp(1.2rem, 3.5vw, 1.6rem); /* Adjusted size for acronym only */
-    color: #2a5c2a;
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    color: var(--logo-color);
     white-space: normal;
 }
 
 .hero-text h1 span.group2-3 {
-    display: inline-block; /* Handles wrapping */
+    display: inline-block;
 }
 
 h2 {
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-    color: #2a5c2a; /* Section heading color */
-    text-align: center; /* Fallback alignment */
+    color: var(--heading-color);
+    text-align: center;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1em; /* Space between lines and text */
+    gap: 1em;
 }
 
 h2::before,
 h2::after {
     content: '';
     display: block;
-    height: 2px; /* Line thickness */
-    width: 50px; /* Line length */
-    background-color: #7fd858; /* Accent color */
+    height: 2px;
+    width: 50px;
+    background-color: var(--accent-color);
 }
 .h2-text {
     margin: 0;
@@ -71,17 +108,17 @@ h2::after {
 
 
 p {
-    margin-bottom: 1rem; /* Default paragraph bottom margin */
+    margin-bottom: 1rem;
 }
 
 a {
-    color: #2a5c2a; /* Default link color */
+    color: var(--link-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover, a:focus {
-    color: #7fd858; /* Hover link color */
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -93,10 +130,10 @@ a:hover, a:focus {
 
 /* Header */
 .site-header {
-    background-color: #f8f9fa; /* Light grey background */
-    color: #e0e0e0;
-    padding-top: 1rem;
-    position: relative; /* For pseudo-element */
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Header Divider Line */
@@ -107,59 +144,227 @@ a:hover, a:focus {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 3px; /* Line thickness */
-    background-color: #7fd858; /* Accent color */
+    height: 3px;
+    background-color: var(--divider-color);
+    transition: background-color 0.3s ease;
+}
+
+/* Container for positioned header controls */
+.header-controls {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 11;
+    pointer-events: none;
+}
+.header-controls > * {
+    pointer-events: auto;
 }
 
 
 .header-content {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centered logo/text */
-    padding-bottom: 2rem; /* Base padding for mobile */
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
     position: relative;
-    z-index: 1; /* Keep content above line */
+    z-index: 1;
 }
 
 .logo-link {
     display: block;
     margin-bottom: 1rem;
     width: auto;
+    margin-top: 0;
 }
 
 .logo-image {
     display: block;
     height: auto;
-    max-width: clamp(160px, 40vw, 220px); /* V1 logo sizing */
+    max-width: clamp(160px, 40vw, 220px);
     image-rendering: auto;
 }
 
 .hero-text {
     text-align: center;
     width: 100%;
+    margin-top: 0; /* V.1.5 */
 }
 
 .hero-text .subtitle {
     font-size: clamp(1rem, 3vw, 1.25rem);
-    color: #2a5c2a;
-    margin-bottom: 0.75rem; /* Keep this specific margin */
+    color: var(--header-text);
+    margin-bottom: 0.75rem;
     font-weight: 400;
 }
 
 .hero-text .slogan {
     font-size: clamp(1rem, 3vw, 1.2rem);
     font-style: italic;
-    color: #2a5c2a;
+    color: var(--header-text);
     font-weight: 400;
-    margin-bottom: 0.5rem; /* Base margin for mobile */
+    margin-bottom: 0.5rem;
+    opacity: 1;
 }
+
+/* Dark Mode Toggle Styles */
+.theme-switch-wrapper {
+    height: 26px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 26px;
+    position: relative;
+    width: 50px;
+}
+
+.theme-switch input { display: none; }
+
+.slider {
+    background-color: var(--toggle-bg);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: var(--toggle-slider);
+    bottom: 4px;
+    content: "";
+    height: 18px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 18px;
+}
+
+input:checked + .slider {
+    background-color: #555;
+}
+input:checked + .slider:before {
+    transform: translateX(24px);
+    background-color: var(--toggle-slider); /* Knob is white */
+}
+
+.slider.round { border-radius: 26px; }
+.slider.round:before { border-radius: 50%; }
+
+.slider .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--toggle-icon);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+.sun-icon { left: 5px; }
+.moon-icon { right: 5px; }
+
+/* Light Mode: Show Sun, Dim Moon */
+input:not(:checked) + .slider .sun-icon { opacity: 1; }
+input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
+
+
+/* Hamburger Menu Styles */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 11;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--menu-bar);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle.active .bar:nth-child(1) { transform: rotate(45deg) translate(7px, 6px); }
+.menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.active .bar:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+
+/* Navigation Menu Styles */
+.main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--nav-bg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+    border-bottom: 1px solid var(--nav-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.main-nav.active {
+    display: block;
+    max-height: 500px;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    text-align: center;
+}
+
+.main-nav li {
+    padding: 0;
+}
+
+.main-nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--nav-link);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    color: var(--nav-link-hover);
+    background-color: rgba(127, 216, 88, 0.1);
+    text-decoration: none;
+}
+
 
 /* Main Content Area */
 .site-main {
     flex: 1;
-    background-color: #ffffff; /* Solid white body */
+    background-color: var(--body-bg);
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+    transition: background-color 0.3s ease;
 }
 
 /* Content Sections */
@@ -167,36 +372,40 @@ a:hover, a:focus {
 .cta-section,
 .contact-section {
     margin-bottom: 2.5rem;
+    position: relative;
+    scroll-margin-top: 60px;
 }
 
 .content-box {
-    background-color: #f8f9fa; /* Light grey background */
-    color: #2A5C2A; /* Default dark green text inside */
+    background-color: var(--box-bg);
+    color: var(--text-color);
     border-radius: 12px;
     padding: 1.5rem;
-    border: 1px solid #7fd858; /* Accent green border */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle dark shadow */
+    border: 1px solid var(--box-border);
+    box-shadow: 0 2px 5px var(--box-shadow);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .vision-statement-title {
     text-align: center;
 }
 .vision-statement-title strong {
-   /* Optional styling */
+   color: var(--heading-color);
+   transition: color 0.3s ease;
 }
 
 
 /* Styling for content inside the boxes */
 .content-box strong {
-     color: inherit; /* Applies default text color unless overridden */
+     color: inherit;
 }
 .content-box a {
-    color: #2a5c2a; /* Link color inside box */
+    color: var(--link-color);
     text-decoration: none;
 }
 .content-box a:hover,
 .content-box a:focus {
-    color: #7fd858; /* Hover color inside box */
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -205,13 +414,14 @@ a:hover, a:focus {
     text-align: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e0e0e0; /* Light separator */
+    border-bottom: 1px solid var(--nav-border);
+    transition: border-color 0.3s ease;
 }
 
 .attribution-text {
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: inherit; /* Inherit dark green */
+    color: inherit;
 }
 
 .linkedin-link {
@@ -219,18 +429,22 @@ a:hover, a:focus {
     align-items: center;
     gap: 0.5rem;
     font-weight: 500;
+    color: var(--link-color); /* Link text color */
 }
 
-/* Correct LinkedIn Icon CSS */
 .content-box .linkedin-icon {
     width: 20px;
     height: 20px;
-    fill: #2a5c2a; /* Icon color inside box */
+    fill: var(--icon-fill); /* Icon fill color */
     transition: fill 0.3s ease;
 }
 .content-box .linkedin-link:hover .linkedin-icon,
 .content-box .linkedin-link:focus .linkedin-icon {
-    fill: #7fd858; /* Hover icon color */
+    fill: var(--icon-hover-fill); /* Hover icon fill */
+}
+.content-box .linkedin-link:hover,
+.content-box .linkedin-link:focus {
+     color: var(--link-hover-color); /* Hover link text color */
 }
 
 
@@ -239,7 +453,7 @@ a:hover, a:focus {
 }
 .content-box .contact-email {
     font-size: clamp(1rem, 3vw, 1.1rem);
-    color: #2A5C2A; /* Text color inside box */
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -251,24 +465,28 @@ a:hover, a:focus {
     align-items: center;
     gap: 0.5rem;
     user-select: none;
-    background-color: #e9ecef; /* Email row background */
+    background-color: var(--email-row-bg);
     padding: 0.3rem 0.8rem;
     border-radius: 6px;
-    border: 1px solid #7fd858; /* Email row border */
+    border: 1px solid var(--email-row-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 #safeEmailLink {
     font-weight: 500;
-    color: #2A5C2A; /* Email text */
+    color: var(--text-color);
     transition: color 0.3s ease;
     cursor: text;
+    pointer-events: none; /* Prevent text hover */
 }
 
-.email-row:hover #safeEmailLink {
-    color: #7fd858; /* Email text hover */
+/* Highlight email text ONLY when copy button is hovered */
+.email-row.button-hovered #safeEmailLink {
+     color: var(--link-hover-color); /* Use JS to add 'button-hovered' class */
 }
+
 #safeEmailLink.email-copied {
-    color: #7fd858 !important; /* Email text copied */
+    color: var(--link-hover-color) !important; /* Copied state */
 }
 
 
@@ -277,15 +495,15 @@ a:hover, a:focus {
     border: none;
     padding: 0;
     cursor: pointer;
-    color: #42A11A; /* Copy button icon color */
+    color: var(--copy-button-color);
     display: inline-flex;
     align-items: center;
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, color 0.3s ease;
 }
 
 .content-box .copy-button:hover,
 .content-box .copy-button:focus {
-    color: #7fd858; /* Copy button hover color */
+    color: var(--copy-button-hover-color); /* Use hover variable */
     transform: scale(1.1);
 }
 
@@ -308,9 +526,9 @@ a:hover, a:focus {
 .content-box .copy-msg {
     display: inline-block;
     font-size: 0.85rem;
-    color: #2A5C2A; /* Copy message text color */
+    color: var(--text-color);
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease, color 0.3s ease;
     margin-top: 0.25rem;
 }
 
@@ -333,10 +551,11 @@ a:hover, a:focus {
 
 /* Footer */
 .site-footer {
-    background-color: #f8f9fa; /* Light grey background */
-    color: #2A5C2A;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     margin-top: auto;
-    position: relative; /* For pseudo-element */
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Footer Divider Line (Simple) */
@@ -347,8 +566,9 @@ a:hover, a:focus {
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px; /* Line thickness */
-    background-color: #7fd858; /* Accent color */
+    height: 3px;
+    background-color: var(--divider-color);
+    transition: background-color 0.3s ease;
 }
 
 .footer-content {
@@ -358,7 +578,7 @@ a:hover, a:focus {
     min-height: 4rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    text-align: center;
+    text-align: center; /* Center text block */
 }
 
 .legal-text {
@@ -366,68 +586,190 @@ a:hover, a:focus {
     line-height: 1.5;
     max-width: 800px;
     margin: 0;
+    color: var(--text-color-light); /* Use variable */
+    transition: color 0.3s ease;
+    text-align: center; /* Ensure centered */
 }
 
-/* --- ADDED: Static Back to Top Button Styles --- */
+/* Static Back to Top Button Styles */
 .back-to-top-container {
-    /* Uses .container max-width and padding */
-    text-align: right; /* Align button to the right */
-    margin-top: 1rem; /* Space above the button */
-    /* No padding-bottom here, uses main padding */
+    text-align: right;
+    margin-top: 1rem;
 }
 
 .back-to-top-static {
-    display: inline-block; /* Allows right alignment via text-align */
-    background-color: #7fd858; /* Accent Green */
-    color: #ffffff; /* White arrow */
+    display: inline-block;
+    background-color: var(--accent-color); /* Use variable */
+    color: #ffffff;
     border: none;
-    border-radius: 4px; /* Slightly rounded square */
+    border-radius: 4px;
     width: 40px;
     height: 40px;
-    font-size: 1.2rem; /* Icon size */
-    line-height: 40px; /* Helps vertical icon centering */
-    text-align: center; /* Helps horizontal icon centering */
+    font-size: 1.2rem;
+    line-height: 40px;
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    vertical-align: middle; /* Align button nicely if text flows near it */
+    vertical-align: middle;
 }
 
 .back-to-top-static:hover {
-    background-color: #6ac048; /* Darker green on hover */
+    background-color: var(--accent-color-darker); /* Use variable */
 }
 
 .back-to-top-static svg {
     width: 1em;
     height: 1em;
-    vertical-align: middle; /* Fine-tune icon vertical alignment */
-    /* Ensure SVG aligns correctly within button */
+    vertical-align: middle;
     display: inline-block;
-    margin-top: -0.1em; /* Small adjustment if needed */
+    margin-top: -0.1em;
 }
-/* --- End Static Back to Top Button Styles --- */
+
+
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+    --body-bg: #181818;
+    --text-color: #E0E0E0; /* Light grey paragraphs */
+    --text-color-light: rgba(224, 224, 224, 0.7);
+    --header-bg: #121212;
+    --footer-bg: #121212;
+    --header-text: var(--text-color); /* Light Grey */
+    --footer-text: var(--text-color); /* Light Grey */
+    --accent-color: #7fd858;
+    --accent-color-darker: #6ac048;
+    --heading-color: var(--accent-color); /* Green H2 */
+    --logo-color: var(--accent-color); /* Green H1 */
+    --link-color: #a0ffa0; /* Lighter green */
+    --link-hover-color: var(--accent-color); /* Bright Green hover */
+    --box-bg: #121212;
+    --box-border: var(--accent-color);
+    --box-shadow: rgba(127, 216, 88, 0.1);
+    --icon-fill: var(--link-color); /* Light Green default icon */
+    --icon-hover-fill: var(--accent-color); /* Bright Green icon hover */
+    --divider-color: var(--accent-color);
+    --email-row-bg: #222222;
+    --email-row-border: #7fd858;
+    --copy-button-color: #ffffff; /* White copy icon */
+    --copy-button-hover-color: var(--accent-color); /* Green copy icon hover */
+    --toggle-bg: #555;
+    --toggle-slider: #ffffff; /* White knob */
+    --toggle-icon: #000000; /* Black icon on white knob */
+    --nav-bg: #111111;
+    --nav-link: #E0E0E0;
+    --nav-link-hover: var(--accent-color);
+    --nav-border: #333333;
+    --menu-bar: var(--accent-color);
+}
+
+/* Specific overrides needed for Dark Mode */
+.dark-mode .hero-text .subtitle,
+.dark-mode .hero-text .slogan {
+    color: var(--text-color);
+}
+.dark-mode .content-box {
+    color: var(--text-color);
+}
+.dark-mode .content-box strong {
+    color: #ffffff;
+}
+.dark-mode .vision-statement-title strong {
+   color: var(--heading-color);
+}
+.dark-mode .content-box a {
+    color: var(--link-color);
+}
+.dark-mode .content-box a:hover,
+.dark-mode .content-box a:focus {
+    color: var(--link-hover-color);
+}
+.dark-mode .contact-box .attribution-content {
+    border-bottom-color: var(--email-row-border);
+}
+.dark-mode .attribution-text {
+    color: var(--text-color);
+}
+/* LinkedIn specific dark mode - CORRECTED */
+.dark-mode .content-box .linkedin-icon {
+    fill: var(--text-color); /* Light Grey icon */
+}
+.dark-mode .content-box .linkedin-link {
+    color: var(--text-color); /* Light Grey Text */
+}
+.dark-mode .content-box .linkedin-link:hover .linkedin-icon {
+    fill: var(--accent-color); /* Green Icon on hover */
+}
+.dark-mode .content-box .linkedin-link:hover {
+     color: var(--accent-color); /* Green text on hover */
+}
+
+.dark-mode .content-box .contact-email {
+    color: var(--text-color);
+}
+.dark-mode #safeEmailLink {
+    color: var(--text-color);
+}
+/* Corrected Email Hover for Dark Mode */
+.dark-mode .email-row.button-hovered #safeEmailLink {
+     color: var(--accent-color); /* Bright Green text highlight */
+}
+.dark-mode #safeEmailLink.email-copied {
+    color: var(--accent-color) !important; /* Bright Green copied state */
+}
+
+.dark-mode .content-box .copy-button {
+    color: var(--copy-button-color);
+}
+.dark-mode .content-box .copy-button:hover,
+.dark-mode .content-box .copy-button:focus {
+    color: var(--copy-button-hover-color); /* White icon hover */
+}
+.dark-mode .content-box .copy-msg {
+    color: var(--text-color);
+}
+.dark-mode .legal-text {
+    color: var(--text-color); /* Use primary text color */
+}
+/* Dark mode toggle icon visibility/color */
+.dark-mode input:checked + .slider:before {
+    background-color: var(--toggle-slider); /* White knob */
+}
+/* Dark Mode: Show Moon, Dim Sun */
+.dark-mode input:checked + .slider .sun-icon { opacity: 0.5; }
+.dark-mode input:checked + .slider .moon-icon { opacity: 1; }
+/* Ensure icons inside knob are visible */
+.dark-mode input:checked + .slider .icon {
+     color: var(--toggle-icon); /* Black icon on white knob */
+}
 
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
+    .header-controls {
+        padding: 0 2rem;
+        top: 1.5rem;
+    }
     .header-content {
         align-items: center;
-        padding-bottom: 2.5rem; /* Base desktop padding */
+        padding-top: 1rem;
+        padding-bottom: 2.5rem;
+        margin-top: 30px;
     }
 
     .logo-link {
        margin-bottom: 1.5rem;
+       margin-top: 0;
     }
 
     .logo-image {
-       max-width: 220px; /* V1 logo desktop size */
+       max-width: 220px;
     }
 
     .hero-text {
-       /* Centered, full-width */
+       margin-top: 0; /* Keep V.1.5 spacing */
     }
 
     .hero-text .slogan {
-       margin-bottom: 0.5rem; /* Keep reduced margin on tablet */
+       margin-bottom: 0.5rem;
     }
 
     .site-main {
@@ -450,7 +792,7 @@ a:hover, a:focus {
          min-height: 6rem;
     }
 
-    .back-to-top-static { /* Optional: Slightly larger on desktop */
+    .back-to-top-static {
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
@@ -459,24 +801,25 @@ a:hover, a:focus {
 
 }
 
-@media (min-width: 1200px) { /* Target wider screens */
+@media (min-width: 1200px) {
     .header-content {
-        /* Increase overall padding slightly more */
         padding-bottom: 3rem;
     }
     .hero-text .slogan {
-        /* Add specific margin for wide screens */
-        margin-bottom: 2rem; /* Restores significant space only here */
+        margin-bottom: 2rem;
     }
 }
 
 
-@media (min-width: 1024px) { /* Keep this for font-size/container adjustments */
+@media (min-width: 1024px) {
     body {
         font-size: 17px;
     }
 
     .container {
        padding: 0 2rem;
+    }
+    .header-controls {
+        padding: 0 2rem;
     }
 }
