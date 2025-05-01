@@ -21,13 +21,13 @@
     --logo-color: #2a5c2a;
     --link-color: #2a5c2a;
     --link-hover-color: #7fd858; /* Accent Green for hover */
-    --box-bg: #f8f9fa;
-    --box-border: #7fd858;
-    --box-shadow: rgba(0,0,0,0.05);
+    --box-bg: #ffffff;
+    --box-border: #ffffff;
+    --box-shadow: #ffffff;
     --icon-fill: #2a5c2a; /* LinkedIn Icon */
     --icon-hover-fill: #7fd858; /* LinkedIn Icon Hover */
     --divider-color: #7fd858;
-    --email-row-bg: #e9ecef;
+    --email-row-bg: #f8f9fa;
     --email-row-border: #7fd858;
     --copy-button-color: #42A11A; /* Copy Button Icon */
     --copy-button-hover-color: var(--icon-hover-fill); /* Copy Button Hover = Accent Green */
@@ -414,7 +414,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     text-align: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--nav-border);
+    border-bottom: 1px solid #ffffff;
     transition: border-color 0.3s ease;
 }
 
@@ -642,8 +642,8 @@ body.dark-mode {
     --link-color: #a0ffa0; /* Lighter green */
     --link-hover-color: var(--accent-color); /* Bright Green hover */
     --box-bg: #181818;
-    --box-border: rgba(127, 216, 88, 0.1);
-    --box-shadow: rgba(127, 216, 88, 0.1);
+    --box-border: #181818;
+    --box-shadow: #181818;
     --icon-fill: var(--link-color); /* Light Green default icon */
     --icon-hover-fill: var(--accent-color); /* Bright Green icon hover */
     --divider-color: var(--accent-color);
@@ -683,7 +683,7 @@ body.dark-mode {
     color: var(--link-hover-color);
 }
 .dark-mode .contact-box .attribution-content {
-    border-bottom-color: rgba(127, 216, 88, 0.1);
+    border-bottom-color: #181818;
 }
 .dark-mode .attribution-text {
     color: var(--text-color);
