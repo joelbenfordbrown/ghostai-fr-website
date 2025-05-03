@@ -47,6 +47,11 @@ html {
 
 body {
     background-color: var(--body-bg);
+    background-image: url('/assets/images/background-image-1.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
     color: var(--text-color);
     font-family: 'Manrope', sans-serif;
     min-height: 100vh;
@@ -56,6 +61,41 @@ body {
     display: flex;
     flex-direction: column;
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    background-image: url('/assets/images/background-image-2.png');
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    z-index: -1;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        var(--header-bg) 0%,
+        rgba(24, 24, 24, 0.7) 20%,  /* Your #181818 with opacity */
+        rgba(24, 24, 24, 0.4) 50%,
+        var(--footer-bg) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
 }
 
 .container {
@@ -361,10 +401,12 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 /* Main Content Area */
 .site-main {
     flex: 1;
-    background-color: var(--body-bg);
+    background-color: transparent; /* Changed from var(--body-bg) */
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 /* Content Sections */
@@ -377,13 +419,10 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 }
 
 .content-box {
-    background-color: var(--box-bg);
-    color: var(--text-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid var(--box-border);
-    box-shadow: 0 2px 5px var(--box-shadow);
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent; /* Remove box fill */
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove shadow */
+  padding: 1.5rem 0; /* Keep vertical spacing only */
 }
 
 .vision-statement-title {
@@ -414,7 +453,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     text-align: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #ffffff;
+    /* border-bottom: 1px solid #ffffff; remove horizontal line from contact box */
     transition: border-color 0.3s ease;
 }
 
@@ -470,6 +509,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     border-radius: 6px;
     border: 1px solid var(--email-row-border);
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
 }
 
 #safeEmailLink {
@@ -524,12 +564,16 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 
 
 .content-box .copy-msg {
-    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 0.85rem;
     color: var(--text-color);
     opacity: 0;
     transition: opacity 0.4s ease, color 0.3s ease;
-    margin-top: 0.25rem;
+    width: max-content;
+    bottom: -1.5rem; /* Adjust up/down by 0.5rem if vertical position adjustment needed */
+    pointer-events: none; /* Prevents interaction with invisible message */
 }
 
 .copy-msg.visible {
@@ -659,6 +703,7 @@ body.dark-mode {
     --nav-link-hover: var(--accent-color);
     --nav-border: #333333;
     --menu-bar: var(--accent-color);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 /* Specific overrides needed for Dark Mode */
@@ -682,9 +727,9 @@ body.dark-mode {
 .dark-mode .content-box a:focus {
     color: var(--link-hover-color);
 }
-.dark-mode .contact-box .attribution-content {
+/* .dark-mode .contact-box .attribution-content {
     border-bottom-color: #181818;
-}
+} comment out dark mode setting as removed horizontal line from contact box: .contact box .attribution-content (removed border-bottom setting) */
 .dark-mode .attribution-text {
     color: var(--text-color);
 }
@@ -823,3 +868,11 @@ body.dark-mode {
         padding: 0 2rem;
     }
 }
+/* Fix desktop cropping */
+@media (min-width: 1024px) and (min-height: 768px) {
+    body {
+      background-size: contain;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+  }
