@@ -66,7 +66,6 @@ body {
 
 body.dark-mode {
     background-image: url('/assets/images/background-image-2.png');
-    background-attachment: fixed;
 }
 
 body::before {
@@ -877,11 +876,3 @@ body.dark-mode {
       background-attachment: fixed;
     }
   }
-  /* Fix background quality on Mobile */
-  @media (hover: none) and (max-width: 768px) {
-    body {
-        background-size: auto 100vh; /* Prevents over-scaling */
-        image-rendering: -webkit-optimize-contrast; /* iOS sharpening */
-        -webkit-backface-visibility: hidden; /* Prevent iOS blur */
-    }
-}
