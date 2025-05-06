@@ -39,7 +39,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-// Dark default while respecting preferences (recommended approach)
+// V.3 Strict Mobile Light Mode + Default Dark Mode for Desktop/Tablet
+const savedTheme = localStorage.getItem('theme');
+const isMobile = window.matchMedia('(max-width: 767px) and (max-height: 900px)').matches;
+
+// Decision tree:
+if (savedTheme) {
+    // 1. Respect saved preference above all
+    setTheme(savedTheme === 'dark', false);
+} else if (isMobile) {
+    // 2. Force light mode if mobile (regardless of OS preference)
+    setTheme(false, true);
+} else {
+    // 3. DEFAULT: Force dark mode for all non-mobile devices
+    setTheme(true, true);
+}
+
+
+/*
+// V.2 Dark Mode default while respecting preferences (recommended approach)
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
@@ -47,9 +65,10 @@ if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
 } else {
     setTheme(true, true); // Default to dark in all other cases
 }
+*/
 
 /*
-// Light default while respecting preferences (alternative)
+// V.1 Light Mode default while respecting preferences (alternative)
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
