@@ -20,17 +20,17 @@
     --heading-color: #2a5c2a;
     --logo-color: #2a5c2a;
     --link-color: #2a5c2a;
-    --link-hover-color: #7fd858; /* Accent Green for hover */
+    --link-hover-color: #7fd858;
     --box-bg: #ffffff;
     --box-border: #ffffff;
     --box-shadow: #ffffff;
-    --icon-fill: #2a5c2a; /* LinkedIn Icon */
-    --icon-hover-fill: #7fd858; /* LinkedIn Icon Hover */
+    --icon-fill: #2a5c2a;
+    --icon-hover-fill: #7fd858;
     --divider-color: #7fd858;
     --email-row-bg: #f8f9fa;
     --email-row-border: #7fd858;
-    --copy-button-color: #42A11A; /* Copy Button Icon */
-    --copy-button-hover-color: var(--icon-hover-fill); /* Copy Button Hover = Accent Green */
+    --copy-button-color: #42A11A;
+    --copy-button-hover-color: var(--icon-hover-fill);
     --toggle-bg: #ccc;
     --toggle-slider: #fff;
     --toggle-icon: #2A5C2A;
@@ -65,7 +65,7 @@ body {
 }
 
 body.dark-mode {
-    background-image: url('/assets/images/background-image-2.png');
+    background-image: linear-gradient(135deg, #181818 0%, #2A5C2A 100%);
 }
 
 body::before {
@@ -87,13 +87,7 @@ body.dark-mode::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-        to bottom,
-        var(--header-bg) 0%,
-        rgba(24, 24, 24, 0.7) 20%,  /* Your #181818 with opacity */
-        rgba(24, 24, 24, 0.4) 50%,
-        var(--footer-bg) 100%
-    );
+    background: transparent;
     z-index: -1;
     pointer-events: none;
 }
@@ -146,7 +140,6 @@ h2::after {
     padding: 0;
 }
 
-
 p {
     margin-bottom: 1rem;
 }
@@ -189,7 +182,7 @@ a:hover, a:focus {
     transition: background-color 0.3s ease;
 }
 
-/* Container for positioned header controls */
+/* Header Controls */
 .header-controls {
     position: absolute;
     top: 1rem;
@@ -206,7 +199,6 @@ a:hover, a:focus {
 .header-controls > * {
     pointer-events: auto;
 }
-
 
 .header-content {
     display: flex;
@@ -235,7 +227,7 @@ a:hover, a:focus {
 .hero-text {
     text-align: center;
     width: 100%;
-    margin-top: 0; /* V.1.5 */
+    margin-top: 0;
 }
 
 .hero-text .subtitle {
@@ -254,7 +246,7 @@ a:hover, a:focus {
     opacity: 1;
 }
 
-/* Dark Mode Toggle Styles */
+/* Dark Mode Toggle */
 .theme-switch-wrapper {
     height: 26px;
 }
@@ -295,7 +287,7 @@ input:checked + .slider {
 }
 input:checked + .slider:before {
     transform: translateX(24px);
-    background-color: var(--toggle-slider); /* Knob is white */
+    background-color: var(--toggle-slider);
 }
 
 .slider.round { border-radius: 26px; }
@@ -314,12 +306,10 @@ input:checked + .slider:before {
 .sun-icon { left: 5px; }
 .moon-icon { right: 5px; }
 
-/* Light Mode: Show Sun, Dim Moon */
 input:not(:checked) + .slider .sun-icon { opacity: 1; }
 input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 
-
-/* Hamburger Menu Styles */
+/* Hamburger Menu */
 .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -346,8 +336,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
 .menu-toggle.active .bar:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-
-/* Navigation Menu Styles */
+/* Navigation */
 .main-nav {
     display: none;
     position: absolute;
@@ -397,11 +386,10 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     text-decoration: none;
 }
 
-
-/* Main Content Area */
+/* Main Content */
 .site-main {
     flex: 1;
-    background-color: transparent; /* Changed from var(--body-bg) */
+    background-color: transparent;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     transition: background-color 0.3s ease;
@@ -419,10 +407,10 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 }
 
 .content-box {
-  background-color: transparent; /* Remove box fill */
-  border: none; /* Remove border */
-  box-shadow: none; /* Remove shadow */
-  padding: 1.5rem 0; /* Keep vertical spacing only */
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 1.5rem 0;
 }
 
 .vision-statement-title {
@@ -433,8 +421,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
    transition: color 0.3s ease;
 }
 
-
-/* Styling for content inside the boxes */
+/* Content Box Styling */
 .content-box strong {
      color: inherit;
 }
@@ -448,12 +435,11 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     text-decoration: underline;
 }
 
-/* Styling for moved attribution content inside contact box */
+/* Contact Box */
 .contact-box .attribution-content {
     text-align: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    /* border-bottom: 1px solid #ffffff; remove horizontal line from contact box */
     transition: border-color 0.3s ease;
 }
 
@@ -468,24 +454,23 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     align-items: center;
     gap: 0.5rem;
     font-weight: 500;
-    color: var(--link-color); /* Link text color */
+    color: var(--link-color);
 }
 
 .content-box .linkedin-icon {
     width: 20px;
     height: 20px;
-    fill: var(--icon-fill); /* Icon fill color */
+    fill: var(--icon-fill);
     transition: fill 0.3s ease;
 }
 .content-box .linkedin-link:hover .linkedin-icon,
 .content-box .linkedin-link:focus .linkedin-icon {
-    fill: var(--icon-hover-fill); /* Hover icon fill */
+    fill: var(--icon-hover-fill);
 }
 .content-box .linkedin-link:hover,
 .content-box .linkedin-link:focus {
-     color: var(--link-hover-color); /* Hover link text color */
+     color: var(--link-hover-color);
 }
-
 
 .contact-box {
     text-align: center;
@@ -517,18 +502,16 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     color: var(--text-color);
     transition: color 0.3s ease;
     cursor: text;
-    pointer-events: none; /* Prevent text hover */
+    pointer-events: none;
 }
 
-/* Highlight email text ONLY when copy button is hovered */
 .email-row.button-hovered #safeEmailLink {
-     color: var(--link-hover-color); /* Use JS to add 'button-hovered' class */
+     color: var(--link-hover-color);
 }
 
 #safeEmailLink.email-copied {
-    color: var(--link-hover-color) !important; /* Copied state */
+    color: var(--link-hover-color) !important;
 }
-
 
 .content-box .copy-button {
     background: none;
@@ -543,7 +526,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 
 .content-box .copy-button:hover,
 .content-box .copy-button:focus {
-    color: var(--copy-button-hover-color); /* Use hover variable */
+    color: var(--copy-button-hover-color);
     transform: scale(1.1);
 }
 
@@ -562,7 +545,6 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
      transform: scaleX(-1) scale(1.1);
 }
 
-
 .content-box .copy-msg {
     position: absolute;
     left: 50%;
@@ -572,8 +554,8 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     opacity: 0;
     transition: opacity 0.4s ease, color 0.3s ease;
     width: max-content;
-    bottom: -1.5rem; /* Adjust up/down by 0.5rem if vertical position adjustment needed */
-    pointer-events: none; /* Prevents interaction with invisible message */
+    bottom: -1.5rem;
+    pointer-events: none;
 }
 
 .copy-msg.visible {
@@ -592,7 +574,6 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     border: 0;
 }
 
-
 /* Footer */
 .site-footer {
     background-color: var(--footer-bg);
@@ -602,7 +583,6 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Footer Divider Line (Simple) */
 .site-footer::before {
     content: '';
     display: block;
@@ -622,7 +602,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     min-height: 4rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    text-align: center; /* Center text block */
+    text-align: center;
 }
 
 .legal-text {
@@ -630,12 +610,12 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     line-height: 1.5;
     max-width: 800px;
     margin: 0;
-    color: var(--text-color-light); /* Use variable */
+    color: var(--text-color-light);
     transition: color 0.3s ease;
-    text-align: center; /* Ensure centered */
+    text-align: center;
 }
 
-/* Static Back to Top Button Styles */
+/* Back to Top */
 .back-to-top-container {
     text-align: right;
     margin-top: 1rem;
@@ -643,7 +623,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 
 .back-to-top-static {
     display: inline-block;
-    background-color: var(--accent-color); /* Use variable */
+    background-color: var(--accent-color);
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -658,7 +638,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 }
 
 .back-to-top-static:hover {
-    background-color: var(--accent-color-darker); /* Use variable */
+    background-color: var(--accent-color-darker);
 }
 
 .back-to-top-static svg {
@@ -669,36 +649,35 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     margin-top: -0.1em;
 }
 
-
 /* --- Dark Mode Styles --- */
 body.dark-mode {
     --body-bg: #181818;
-    --text-color: #E0E0E0; /* Light grey paragraphs */
+    --text-color: #E0E0E0;
     --text-color-light: rgba(224, 224, 224, 0.7);
-    --header-bg: #181818;
-    --footer-bg: #181818;
-    --header-text: var(--text-color); /* Light Grey */
-    --footer-text: var(--text-color); /* Light Grey */
+    --header-bg: transparent;
+    --footer-bg: transparent;
+    --header-text: var(--text-color);
+    --footer-text: var(--text-color);
     --accent-color: #7fd858;
     --accent-color-darker: #6ac048;
-    --heading-color: var(--text-color); /* Light Grey */
-    --logo-color: var(--text-color); /* Light Grey H1 */
-    --link-color: #a0ffa0; /* Lighter green */
-    --link-hover-color: var(--accent-color); /* Bright Green hover */
+    --heading-color: var(--text-color);
+    --logo-color: var(--text-color);
+    --link-color: #a0ffa0;
+    --link-hover-color: var(--accent-color);
     --box-bg: #181818;
     --box-border: #181818;
     --box-shadow: #181818;
-    --icon-fill: var(--link-color); /* Light Green default icon */
-    --icon-hover-fill: var(--accent-color); /* Bright Green icon hover */
+    --icon-fill: var(--link-color);
+    --icon-hover-fill: var(--accent-color);
     --divider-color: var(--accent-color);
-    --email-row-bg: #222222;
+    --email-row-bg: 1c2e14;
     --email-row-border: #7fd858;
-    --copy-button-color: #ffffff; /* White copy icon */
-    --copy-button-hover-color: var(--accent-color); /* Green copy icon hover */
+    --copy-button-color: #ffffff;
+    --copy-button-hover-color: var(--accent-color);
     --toggle-bg: #555;
-    --toggle-slider: #ffffff; /* White knob */
-    --toggle-icon: #000000; /* Black icon on white knob */
-    --nav-bg: #111111;
+    --toggle-slider: #ffffff;
+    --toggle-icon: #000000;
+    --nav-bg: #345825;
     --nav-link: #E0E0E0;
     --nav-link-hover: var(--accent-color);
     --nav-border: #333333;
@@ -706,7 +685,6 @@ body.dark-mode {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-/* Specific overrides needed for Dark Mode */
 .dark-mode .hero-text .subtitle,
 .dark-mode .hero-text .slogan {
     color: var(--text-color);
@@ -727,65 +705,54 @@ body.dark-mode {
 .dark-mode .content-box a:focus {
     color: var(--link-hover-color);
 }
-/* .dark-mode .contact-box .attribution-content {
-    border-bottom-color: #181818;
-} comment out dark mode setting as removed horizontal line from contact box: .contact box .attribution-content (removed border-bottom setting) */
 .dark-mode .attribution-text {
     color: var(--text-color);
 }
-/* LinkedIn specific dark mode - CORRECTED */
 .dark-mode .content-box .linkedin-icon {
-    fill: var(--text-color); /* Light Grey icon */
+    fill: var(--text-color);
 }
 .dark-mode .content-box .linkedin-link {
-    color: var(--text-color); /* Light Grey Text */
+    color: var(--text-color);
 }
 .dark-mode .content-box .linkedin-link:hover .linkedin-icon {
-    fill: var(--accent-color); /* Green Icon on hover */
+    fill: var(--accent-color);
 }
 .dark-mode .content-box .linkedin-link:hover {
-     color: var(--accent-color); /* Green text on hover */
+     color: var(--accent-color);
 }
-
 .dark-mode .content-box .contact-email {
     color: var(--text-color);
 }
 .dark-mode #safeEmailLink {
     color: var(--text-color);
 }
-/* Corrected Email Hover for Dark Mode */
 .dark-mode .email-row.button-hovered #safeEmailLink {
-     color: var(--accent-color); /* Bright Green text highlight */
+     color: var(--accent-color);
 }
 .dark-mode #safeEmailLink.email-copied {
-    color: var(--accent-color) !important; /* Bright Green copied state */
+    color: var(--accent-color) !important;
 }
-
 .dark-mode .content-box .copy-button {
     color: var(--copy-button-color);
 }
 .dark-mode .content-box .copy-button:hover,
 .dark-mode .content-box .copy-button:focus {
-    color: var(--copy-button-hover-color); /* White icon hover */
+    color: var(--copy-button-hover-color);
 }
 .dark-mode .content-box .copy-msg {
     color: var(--text-color);
 }
 .dark-mode .legal-text {
-    color: var(--text-color); /* Use primary text color */
+    color: var(--text-color);
 }
-/* Dark mode toggle icon visibility/color */
 .dark-mode input:checked + .slider:before {
-    background-color: var(--toggle-slider); /* White knob */
+    background-color: var(--toggle-slider);
 }
-/* Dark Mode: Show Moon, Dim Sun */
 .dark-mode input:checked + .slider .sun-icon { opacity: 0.5; }
 .dark-mode input:checked + .slider .moon-icon { opacity: 1; }
-/* Ensure icons inside knob are visible */
 .dark-mode input:checked + .slider .icon {
-     color: var(--toggle-icon); /* Black icon on white knob */
+     color: var(--toggle-icon);
 }
-
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
@@ -799,51 +766,41 @@ body.dark-mode {
         padding-bottom: 2.5rem;
         margin-top: 30px;
     }
-
     .logo-link {
        margin-bottom: 1.5rem;
        margin-top: 0;
     }
-
     .logo-image {
        max-width: 220px;
     }
-
     .hero-text {
-       margin-top: 0; /* Keep V.1.5 spacing */
+       margin-top: 0;
     }
-
     .hero-text .slogan {
        margin-bottom: 0.5rem;
     }
-
     .site-main {
         padding-top: 4rem;
         padding-bottom: 4rem;
     }
-
     .content-box {
         padding: 2rem;
     }
-
     .contact-box .attribution-content {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
     }
-
     .footer-content {
          padding-top: 2.5rem;
          padding-bottom: 2.5rem;
          min-height: 6rem;
     }
-
     .back-to-top-static {
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
         line-height: 45px;
     }
-
 }
 
 @media (min-width: 1200px) {
@@ -855,12 +812,10 @@ body.dark-mode {
     }
 }
 
-
 @media (min-width: 1024px) {
     body {
         font-size: 17px;
     }
-
     .container {
        padding: 0 2rem;
     }
@@ -868,20 +823,24 @@ body.dark-mode {
         padding: 0 2rem;
     }
 }
-/* Fix desktop cropping */
+
 @media (min-width: 1024px) and (min-height: 768px) {
     body {
       background-size: contain;
       background-position: center center;
       background-attachment: fixed;
     }
-  }
-  /* Remove background image on mobile devices */
+}
+
 @media (max-width: 767px) and (max-height: 900px) {
     body, body.dark-mode {
         background-image: none;
     }
     body::before, body.dark-mode::before {
         background-color: var(--body-bg);
+    }
+    body.dark-mode {
+        --email-row-bg: #222222;
+        --nav-bg: #111111;
     }
 }

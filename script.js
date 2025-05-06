@@ -39,17 +39,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Set Initial Theme to Light - Ignoring storage/prefs on first load
-    setTheme(false, false);
-    // If you WANT to respect storage/prefs on load, use the previous logic here instead.
-    // Example (respecting storage/prefs):
-    // const savedTheme = localStorage.getItem('theme');
-    // const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    // if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    //     setTimeout(() => setTheme(true, true), 0); // Apply dark if needed
-    // } else {
-    //     localStorage.setItem('theme', 'light'); // Ensure storage matches light
-    // }
+// Dark default while respecting preferences (recommended approach)
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+    setTheme(false, true); // Apply light only if explicitly set or prefers light
+} else {
+    setTheme(true, true); // Default to dark in all other cases
+}
+
+/*
+// Light default while respecting preferences (alternative)
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    setTheme(true, true);  // Apply dark only if:
+                          // - User explicitly chose dark mode, OR
+                          // - No choice saved AND OS prefers dark
+} else {
+    setTheme(false, true); // DEFAULT: Light mode for:
+                          // - First visits (no saved preference)
+                          // - Explicit light mode choice
+                          // - OS prefers light
+}
+*/
 
 
     // Add listener for toggle change
