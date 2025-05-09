@@ -15,7 +15,7 @@
     --footer-bg: #f8f9fa;
     --header-text: #2A5C2A;
     --footer-text: #2A5C2A;
-    --accent-color: #7fd858;
+    --accent-color: #42A11A;
     --accent-color-darker: #6ac048;
     --heading-color: #2a5c2a;
     --logo-color: #2a5c2a;
@@ -26,9 +26,9 @@
     --box-shadow: #ffffff;
     --icon-fill: #2a5c2a;
     --icon-hover-fill: #7fd858;
-    --divider-color: #7fd858;
+    --divider-color: #42A11A;
     --email-row-bg: #f8f9fa;
-    --email-row-border: #7fd858;
+    --email-row-border: #42A11A;
     --copy-button-color: #42A11A;
     --copy-button-hover-color: var(--icon-hover-fill);
     --toggle-bg: #ccc;
@@ -38,7 +38,7 @@
     --nav-link: #2a5c2a;
     --nav-link-hover: #7fd858;
     --nav-border: #e0e0e0;
-    --menu-bar: var(--accent-color);
+    --menu-bar: #42A11A;
 }
 
 html {
@@ -177,7 +177,7 @@ a:hover, a:focus {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 3px;
     background-color: var(--divider-color);
     transition: background-color 0.3s ease;
 }
@@ -590,7 +590,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     top: 0;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 3px;
     background-color: var(--divider-color);
     transition: background-color 0.3s ease;
 }
@@ -752,6 +752,28 @@ body.dark-mode {
 .dark-mode input:checked + .slider .moon-icon { opacity: 1; }
 .dark-mode input:checked + .slider .icon {
      color: var(--toggle-icon);
+}
+.dark-mode .site-header::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--divider-color);
+    transition: background-color 0.3s ease;
+}
+.dark-mode .site-footer::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--divider-color);
+    transition: background-color 0.3s ease;
 }
 
 /* Responsive Adjustments */
