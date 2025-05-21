@@ -114,9 +114,11 @@ h1 {
 
 .hero-text h1 span.group2-3 {
     display: inline-block;
+    font-family: 'Chakra Petch', sans-serif;
 }
 
 h2 {
+    font-family: 'Chakra Petch', sans-serif;
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);
     color: var(--heading-color);
     text-align: center;
