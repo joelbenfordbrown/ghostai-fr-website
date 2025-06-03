@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-// V.3 Strict Mobile Light Mode + Default Dark Mode for Desktop/Tablet
+// Strict Mobile Light Mode + Default Dark Mode for Desktop/Tablet
 const savedTheme = localStorage.getItem('theme');
 const isMobile = window.matchMedia('(max-width: 767px) and (max-height: 900px)').matches;
 
@@ -55,35 +55,6 @@ if (savedTheme) {
     setTheme(true, true);
 }
 
-
-/*
-// V.2 Dark Mode default while respecting preferences (recommended approach)
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
-    setTheme(false, true); // Apply light only if explicitly set or prefers light
-} else {
-    setTheme(true, true); // Default to dark in all other cases
-}
-*/
-
-/*
-// V.1 Light Mode default while respecting preferences (alternative)
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    setTheme(true, true);  // Apply dark only if:
-                          // - User explicitly chose dark mode, OR
-                          // - No choice saved AND OS prefers dark
-} else {
-    setTheme(false, true); // DEFAULT: Light mode for:
-                          // - First visits (no saved preference)
-                          // - Explicit light mode choice
-                          // - OS prefers light
-}
-*/
-
-
     // Add listener for toggle change
     if (themeCheckbox) {
         themeCheckbox.addEventListener('change', () => {
@@ -92,7 +63,6 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
     } else {
          console.warn('Theme toggle checkbox not found.');
     }
-
 
     // --- Hamburger Menu Functionality ---
     const menuToggle = document.getElementById('menu-toggle');
@@ -135,7 +105,6 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
     } else {
          console.warn('Menu toggle button or main nav element not found.');
     }
-
 
     // --- Email Copy Functionality ---
     const emailParts = { user: 'admin', domain: 'ghostai.fr' };
@@ -201,38 +170,54 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
     } else {
         console.warn('Back to Top button element (#backToTopBtnStatic) not found.');
     }
-const changingText = document.querySelector('.changing-text');
-const words = ['unique identities', 'persistent personality', 'synthetic sentience', 'ethical agency'];
-let currentIndex = 0;
-let isDeleting = false;
-let text = '';
-let typingSpeed = 100;
-let wordDelay = 2000;
 
-function type() {
-  const currentWord = words[currentIndex];
-  
-  if (isDeleting) {
-    text = currentWord.substring(0, text.length - 1);
-  } else {
-    text = currentWord.substring(0, text.length + 1);
-  }
-  
-  changingText.textContent = text;
-  
-  if (!isDeleting && text === currentWord) {
-    isDeleting = true;
-    typingSpeed = wordDelay;
-  } else if (isDeleting && text === '') {
-    isDeleting = false;
-    currentIndex = (currentIndex + 1) % words.length;
-    typingSpeed = 100;
-  } else {
-    typingSpeed = isDeleting ? 50 : 100;
-  }
-  
-  setTimeout(type, typingSpeed);
-}
+    // --- Typing Animation with Memory Leak Prevention ---
+    const changingText = document.querySelector('.changing-text');
+    const words = ['unique identities', 'persistent personality', 'synthetic sentience', 'ethical agency'];
+    let currentIndex = 0;
+    let isDeleting = false;
+    let text = '';
+    let typingSpeed = 100;
+    let wordDelay = 2000;
+    let timeoutId; // Added for cleanup
+    let animationActive = true; // Added for visibility tracking
 
-type();
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        clearTimeout(timeoutId);
+        animationActive = false;
+      } else if (!animationActive) {
+        animationActive = true;
+        type();
+      }
+    }
+
+    function type() {
+      const currentWord = words[currentIndex];
+      
+      if (isDeleting) {
+        text = currentWord.substring(0, text.length - 1);
+      } else {
+        text = currentWord.substring(0, text.length + 1);
+      }
+      
+      changingText.textContent = text;
+      
+      if (!isDeleting && text === currentWord) {
+        isDeleting = true;
+        typingSpeed = wordDelay;
+      } else if (isDeleting && text === '') {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % words.length;
+        typingSpeed = 100;
+      } else {
+        typingSpeed = isDeleting ? 50 : 100;
+      }
+      
+      timeoutId = setTimeout(type, typingSpeed);
+    }
+
+    // Start animation and set up visibility listener
+    type();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 }); // End DOMContentLoaded
