@@ -117,6 +117,15 @@ h1 {
     font-family: 'Chakra Petch', sans-serif;
 }
 
+.changing-text {
+  color: var(--changing-text-color, #42a11a); /* Fallback to light mode color */
+  font-weight: bold;
+}
+
+body.dark-mode .changing-text {
+  color: var(--changing-text-color-dark, #7fd858); /* Dark mode color */
+}
+
 h2 {
     font-family: 'Chakra Petch', sans-serif;
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);

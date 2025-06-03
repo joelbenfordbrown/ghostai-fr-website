@@ -201,5 +201,38 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
     } else {
         console.warn('Back to Top button element (#backToTopBtnStatic) not found.');
     }
+const changingText = document.querySelector('.changing-text');
+const words = ['unique identities', 'persistent personality', 'synthetic sentience', 'ethical agency'];
+let currentIndex = 0;
+let isDeleting = false;
+let text = '';
+let typingSpeed = 100;
+let wordDelay = 2000;
 
+function type() {
+  const currentWord = words[currentIndex];
+  
+  if (isDeleting) {
+    text = currentWord.substring(0, text.length - 1);
+  } else {
+    text = currentWord.substring(0, text.length + 1);
+  }
+  
+  changingText.textContent = text;
+  
+  if (!isDeleting && text === currentWord) {
+    isDeleting = true;
+    typingSpeed = wordDelay;
+  } else if (isDeleting && text === '') {
+    isDeleting = false;
+    currentIndex = (currentIndex + 1) % words.length;
+    typingSpeed = 100;
+  } else {
+    typingSpeed = isDeleting ? 50 : 100;
+  }
+  
+  setTimeout(type, typingSpeed);
+}
+
+type();
 }); // End DOMContentLoaded
