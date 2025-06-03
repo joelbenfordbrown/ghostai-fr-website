@@ -41,17 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Strict Mobile Light Mode + Default Dark Mode for Desktop/Tablet
 const savedTheme = localStorage.getItem('theme');
-const isMobile = window.matchMedia('(max-width: 767px) and (max-height: 900px)').matches;
 
 // Decision tree:
 if (savedTheme) {
-    // 1. Respect saved preference above all
+    // Respect saved preference
     setTheme(savedTheme === 'dark', false);
-} else if (isMobile) {
-    // 2. Force light mode if mobile (regardless of OS preference)
-    setTheme(false, true);
 } else {
-    // 3. DEFAULT: Force dark mode for all non-mobile devices
+    // Default to dark mode for all devices
     setTheme(true, true);
 }
 
