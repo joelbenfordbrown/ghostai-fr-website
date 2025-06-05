@@ -48,7 +48,7 @@ html {
 body {
     background-color: var(--body-bg);
     color: var(--text-color);
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
@@ -87,7 +87,8 @@ h1 {
 
 .hero-text h1 span.group2-3 {
     display: inline-block;
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .changing-text {
@@ -100,7 +101,7 @@ body.dark-mode .changing-text {
 }
 
 h2 {
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(1.3rem, 3.5vw, 1.8rem);
     color: var(--heading-color);
     text-align: center;
