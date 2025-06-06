@@ -13,7 +13,7 @@ function initAccordion() {
   const content = button.nextElementSibling;
   
   if (index === 0) {
-    button.click();
+    setTimeout(() => button.click(), 100); // ← 100ms delay ensures DOM readiness
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
