@@ -420,6 +420,111 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     text-decoration: underline;
 }
 
+/* ===== Accordion Styles ===== */
+.accordion {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: transparent;
+  border: 1px solid var(--divider-color);
+  transition: all 0.3s ease;
+}
+
+.accordion-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--heading-color);
+  transition: all 0.3s ease;
+}
+
+.accordion-button:hover {
+  background-color: rgba(66, 161, 26, 0.05);
+}
+
+.accordion-button[aria-expanded="true"] {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+body.dark-mode .accordion-button[aria-expanded="true"] {
+  background-color: rgba(127, 216, 88, 0.1); /* 10% of --accent-color */
+  color: white;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.accordion-content {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content p {
+  padding: 1rem 0;
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: inherit;
+}
+
+.accordion-button[aria-expanded="true"] .accordion-icon {
+  transform: rotate(45deg);
+  color: white;
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .accordion-item {
+  border-color: var(--accent-color);
+}
+
+body.dark-mode .accordion-button {
+  color: var(--text-color);
+}
+
+body.dark-mode .accordion-button:hover {
+  background-color: rgba(127, 216, 88, 0.1);
+}
+
+body.dark-mode .accordion-content p {
+  color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .accordion-button {
+    padding: 1.25rem 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .accordion-content {
+    padding: 0 2rem;
+  }
+  
+  .accordion-content p {
+    padding: 1.25rem 0;
+  }
+}
+
 /* Contact Box */
 .contact-box .attribution-content {
     text-align: center;

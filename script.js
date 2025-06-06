@@ -1,4 +1,43 @@
+// ===== Accordion Functionality =====
+function initAccordion() {
+  const accordionButtons = document.querySelectorAll('.accordion-button');
+  
+  accordionButtons.forEach(button => {
+    const content = button.nextElementSibling;
+    button.setAttribute('aria-expanded', 'false');
+    content.style.maxHeight = '0';
+    
+    // ===== CURRENT IMPLEMENTATION (multiple open) =====
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+      content.style.maxHeight = expanded ? '0' : `${content.scrollHeight}px`;
+    });
+
+    // ===== ALTERNATIVE: Single-open mode (commented out) =====
+    /*
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other accordions first
+      document.querySelectorAll('.accordion-button').forEach(otherBtn => {
+        if (otherBtn !== button) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          otherBtn.nextElementSibling.style.maxHeight = '0';
+        }
+      });
+      
+      // Toggle current item
+      button.setAttribute('aria-expanded', !expanded);
+      content.style.maxHeight = expanded ? '0' : `${content.scrollHeight}px`;
+    });
+    */
+   
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    initAccordion(); // Initialize accordion functionality
 
     // --- Theme Toggle Functionality ---
     const themeCheckbox = document.getElementById('theme-checkbox');
