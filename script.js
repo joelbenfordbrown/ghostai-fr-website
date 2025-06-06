@@ -2,10 +2,23 @@
 function initAccordion() {
   const accordionButtons = document.querySelectorAll('.accordion-button');
   
+  /* // All accordion items start collapsed
   accordionButtons.forEach(button => {
     const content = button.nextElementSibling;
+    button.setAttribute('aria-expanded', 'false'); // All items start collapsed
+    content.style.maxHeight = '0'; // All contents hidden */
+
+  // First accordion item starts expanded, others collapsed
+  accordionButtons.forEach((button, index) => {
+  const content = button.nextElementSibling;
+  
+  if (index === 0) {
+    button.setAttribute('aria-expanded', 'true');
+    content.style.maxHeight = `${content.scrollHeight}px`;
+  } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
+  }
     
     // ===== CURRENT IMPLEMENTATION (multiple open) =====
     button.addEventListener('click', () => {
