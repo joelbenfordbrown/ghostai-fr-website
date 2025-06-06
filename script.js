@@ -13,8 +13,7 @@ function initAccordion() {
   const content = button.nextElementSibling;
   
   if (index === 0) {
-    button.setAttribute('aria-expanded', 'true');
-    content.style.maxHeight = `${content.scrollHeight}px`;
+    button.click();
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
