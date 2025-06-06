@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-// Strict Mobile Light Mode + Default Dark Mode for Desktop/Tablet
+
+// Check for saved user preference (falls back to light mode default)
 const savedTheme = localStorage.getItem('theme');
 
 // Decision tree:
@@ -87,7 +88,7 @@ if (savedTheme) {
     setTheme(savedTheme === 'dark', false);
 } else {
     // Default to dark mode for all devices
-    setTheme(true, true);
+    setTheme(false, true); // <-- Default: (true, true) = dark mode; (false, true) = light mode
 }
 
     // Add listener for toggle change
