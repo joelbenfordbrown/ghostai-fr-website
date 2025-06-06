@@ -472,6 +472,7 @@ body.dark-mode .accordion-button[aria-expanded="true"] {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
+  /* padding-top: 1px; /* Adds 1px transparent buffer if top margin collapse occurs due to long text blocks */
 }
 
 .accordion-content p {
