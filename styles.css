@@ -867,6 +867,35 @@ body.dark-mode {
     transition: background-color 0.3s ease;
 }
 
+/* Profile Photo */
+.profile-photo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--divider-color);
+    transition: border-color 0.3s ease;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .profile-photo {
+    border-color: var(--accent-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+}
+
 /* Responsive Adjustments */
 @media (min-width: 768px) {
     .header-controls {
