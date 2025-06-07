@@ -20,23 +20,23 @@
     --heading-color: #2a5c2a;
     --logo-color: #2a5c2a;
     --link-color: #2a5c2a;
-    --link-hover-color: #7fd858;
+    --link-hover-color: #42A11A;
     --box-bg: #ffffff;
     --box-border: #ffffff;
     --box-shadow: #ffffff;
     --icon-fill: #2a5c2a;
-    --icon-hover-fill: #7fd858;
+    --icon-hover-fill: #42A11A;
     --divider-color: #42A11A;
     --email-row-bg: #f8f9fa;
     --email-row-border: #42A11A;
-    --copy-button-color: #42A11A;
+    --copy-button-color: #2a5c2a;
     --copy-button-hover-color: var(--icon-hover-fill);
     --toggle-bg: #ccc;
     --toggle-slider: #fff;
     --toggle-icon: #2A5C2A;
     --nav-bg: #ffffff;
     --nav-link: #2a5c2a;
-    --nav-link-hover: #7fd858;
+    --nav-link-hover: #42A11A;
     --nav-border: #e0e0e0;
     --menu-bar: #42A11A;
 }
@@ -753,7 +753,7 @@ body.dark-mode {
     --accent-color-darker: #6ac048;
     --heading-color: var(--text-color);
     --logo-color: var(--text-color);
-    --link-color: #a0ffa0;
+    --link-color: #E0E0E0;
     --link-hover-color: var(--accent-color);
     --box-bg: #181818;
     --box-border: #181818;
