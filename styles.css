@@ -324,18 +324,25 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 /* Navigation */
 .main-nav {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     width: 100%;
     background-color: var(--nav-bg);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 10;
-    border-bottom: 1px solid var(--nav-border);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out, background-color 0.3s ease, border-color 0.3s ease;
+    max-height: 100vh;
+    overflow-y: auto;
+    transition: all 0.4s ease-out;
+    padding-top: 80px;
+    border: none;
+}
+
+@media (max-width: 767px) {
+    .main-nav {
+        padding-top: 70px;
+    }
 }
 
 .main-nav.active {
@@ -343,11 +350,31 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     max-height: 500px;
 }
 
+/* Start: Semi-Transparent Overlay when menu is active --
+.main-nav::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.main-nav.active::before {
+    opacity: 1;
+}
+-- End: Semi-Transparent Overlay when menu is active */
+
 .main-nav ul {
     list-style: none;
     padding: 1rem 0;
     margin: 0;
     text-align: center;
+    background-color: inherit;
 }
 
 .main-nav li {
@@ -356,12 +383,17 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 
 .main-nav a {
     display: block;
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.5rem;
     color: var(--nav-link);
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: color 0.3s ease, background-color 0.3s ease;
+    border-bottom: 1px solid rgba(127, 216, 88, 0.1); /* Subtle dividers */
+}
+
+.main-nav li:first-child a {
+    border-top: 1px solid rgba(127, 216, 88, 0.1);
 }
 
 .main-nav a:hover,
