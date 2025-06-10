@@ -350,25 +350,6 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     max-height: 500px;
 }
 
-/* Start: Semi-Transparent Overlay when menu is active --
-.main-nav::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.main-nav.active::before {
-    opacity: 1;
-}
--- End: Semi-Transparent Overlay when menu is active */
-
 .main-nav ul {
     list-style: none;
     padding: 1rem 0;
@@ -782,7 +763,7 @@ body.dark-mode {
     --header-text: var(--text-color);
     --footer-text: var(--text-color);
     --accent-color: #7fd858;
-    --accent-color-darker: #6ac048;
+    --accent-color-darker: #42A11A;
     --heading-color: var(--text-color);
     --logo-color: var(--text-color);
     --link-color: #E0E0E0;
