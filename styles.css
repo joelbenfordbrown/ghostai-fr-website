@@ -91,6 +91,18 @@ h1 {
     font-weight: 400;
 }
 
+/* ™ trade mark reduction for acronym */
+.hero-text span.group2-3 small {
+  font-size: 0.45em;
+  vertical-align: super;
+}
+
+/* ™ trade mark reduction for attribution */
+.attribution-text small {
+  font-size: 0.6em;
+  vertical-align: super;
+}
+
 .changing-text {
   color: var(--changing-text-color, #42a11a); /* Fallback to light mode color */
   font-weight: bold;
