@@ -61,7 +61,7 @@ body {
 }
 
 body.dark-mode {
-    background: linear-gradient(135deg, #061103 0%, #2A5C2A 100%) fixed;
+    background: radial-gradient(circle at center, #2A5C2A 0%, #061103 100%) fixed;
     background-size: cover;
 }
 
@@ -341,7 +341,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     left: 0;
     right: 0;
     width: 100%;
-    background-color: var(--nav-bg);
+    background: var(--nav-bg);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 10;
     max-height: 100vh;
@@ -385,15 +385,31 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
     border-bottom: 1px solid rgba(127, 216, 88, 0.1); /* Subtle dividers */
 }
 
+.dark-mode .main-nav a {
+    color: var(--nav-link);
+    border-bottom-color: rgba(127, 216, 88, 0.2); /* Dark mode divider */
+}
+
 .main-nav li:first-child a {
     border-top: 1px solid rgba(127, 216, 88, 0.1);
 }
 
+.dark-mode .main-nav li:first-child a {
+    border-top-color: rgba(127, 216, 88, 0.2);
+}
+
 .main-nav a:hover,
 .main-nav a:focus {
-    color: var(--nav-link-hover);
-    background-color: rgba(127, 216, 88, 0.1);
+    color: var(--body-bg);
+    background-color: #42A11A;
     text-decoration: none;
+}
+
+.dark-mode .main-nav a:hover,
+.dark-mode .main-nav a:focus {
+    color: #1E1E1E; 
+    background-color: #7fd858; 
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 /* Main Content */
@@ -478,7 +494,8 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 }
 
 .accordion-button:hover {
-  background-color: rgba(66, 161, 26, 0.05);
+  background-color: var(--accent-color);
+  color: white;
 }
 
 .accordion-button[aria-expanded="true"] {
@@ -487,8 +504,8 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 }
 
 body.dark-mode .accordion-button[aria-expanded="true"] {
-  background-color: rgba(127, 216, 88, 0.1); /* 10% of --accent-color */
-  color: white;
+  background-color: #7fd858; 
+  color: #1E1E1E;
   border-bottom: 1px solid var(--accent-color);
 }
 
@@ -528,7 +545,13 @@ body.dark-mode .accordion-button {
 }
 
 body.dark-mode .accordion-button:hover {
-  background-color: rgba(127, 216, 88, 0.1);
+  background-color: #7fd858;
+  color: #1E1E1E;
+}
+
+body.dark-mode .accordion-button[aria-expanded="true"] .accordion-icon {
+  transform: rotate(45deg);
+  color: #1E1E1E;
 }
 
 body.dark-mode .accordion-content p {
@@ -786,14 +809,15 @@ body.dark-mode {
     --icon-fill: var(--link-color);
     --icon-hover-fill: var(--accent-color);
     --divider-color: var(--accent-color);
-    --email-row-bg: 1c2e14;
+    --email-row-bg: transparent; /* previously #1c2e14 */
     --email-row-border: #7fd858;
     --copy-button-color: #ffffff;
     --copy-button-hover-color: var(--accent-color);
     --toggle-bg: #555;
     --toggle-slider: #ffffff;
     --toggle-icon: #000000;
-    --nav-bg: #345825;
+  /* --nav-bg: #345825; */
+    --nav-bg: radial-gradient(circle at center, #2A5C2A 0%, #061103 100%);
     --nav-link: #E0E0E0;
     --nav-link-hover: var(--accent-color);
     --nav-border: #333333;
