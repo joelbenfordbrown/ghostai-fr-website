@@ -763,7 +763,7 @@ body.dark-mode .accordion-content p {
 .back-to-top-static {
     display: inline-block;
     background-color: var(--accent-color);
-    color: #ffffff;
+    color: var(--body-bg);
     border: none;
     border-radius: 4px;
     width: 40px;
