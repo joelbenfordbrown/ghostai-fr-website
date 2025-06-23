@@ -99,7 +99,7 @@ if (savedTheme) {
     // Respect saved preference
     setTheme(savedTheme === 'dark', false);
 } else {
-    // Default to dark mode for all devices
+    // Default mode for all devices
     setTheme(false, true); // <-- Default: (true, true) = dark mode; (false, true) = light mode
 }
 
@@ -265,7 +265,31 @@ if (savedTheme) {
       timeoutId = setTimeout(type, typingSpeed);
     }
 
-    // Start animation and set up visibility listener
+    // Start typing animation and set up visibility listener
     type();
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // ▼ Bokeh Light Effect Implementation ▼
+    const container = document.getElementById("bokeh-container");
+    if (container) {
+        const updateHeight = () => {
+            const scrollHeight = Math.max(document.body.scrollHeight, window.innerHeight * 1.5);
+            document.documentElement.style.setProperty('--doc-height', `${scrollHeight}px`);
+        };
+        updateHeight();
+        window.addEventListener('resize', updateHeight);
+        for (let i = 0; i < 40; i++) {
+            const bokeh = document.createElement("div");
+            bokeh.className = "bokeh";
+            bokeh.style.left = `${Math.random() * 75 + 10}%`;
+            bokeh.style.top = `${Math.random() * 100}%`;
+            const size = Math.random() * 80 + 20;
+            bokeh.style.width = `${size}px`;
+            bokeh.style.height = `${size}px`;
+            bokeh.style.opacity = Math.random() * 0.5 + 0.1;
+            container.appendChild(bokeh);
+        }
+    }
+    // End of Bokeh Light Effect Implementation
+
 }); // End DOMContentLoaded

@@ -9,13 +9,13 @@
 :root {
     /* Light Mode Colors */
     --body-bg: #ffffff;
-    --text-color: #2A5C2A;
+    --text-color: #2A5C2A;  /* alt. #42861A  for WCAG 2.0 Level AA Contrast */
     --text-color-light: rgba(42, 92, 42, 0.8);
-    --header-bg: #f8f9fa;
-    --footer-bg: #f8f9fa;
+    --header-bg: transparent; /* previously #f8f9fa */
+    --footer-bg: transparent; /* previously #f8f9fa */
     --header-text: #2A5C2A;
     --footer-text: #2A5C2A;
-    --accent-color: #42A11A;
+    --accent-color: #42A11A;  /* alt. #42861A for WCAG 2.0 Level AA Contrast */
     --accent-color-darker: #6ac048;
     --heading-color: #2a5c2a;
     --logo-color: #2a5c2a;
@@ -27,7 +27,7 @@
     --icon-fill: #2a5c2a;
     --icon-hover-fill: #42A11A;
     --divider-color: #42A11A;
-    --email-row-bg: #f8f9fa;
+    --email-row-bg: var(--body-bg); /* previously #f8f9fa or 'transparent' */
     --email-row-border: #42A11A;
     --copy-button-color: #2a5c2a;
     --copy-button-hover-color: var(--icon-hover-fill);
@@ -36,7 +36,7 @@
     --toggle-icon: #2A5C2A;
     --nav-bg: #ffffff;
     --nav-link: #2a5c2a;
-    --nav-link-hover: #42A11A;
+    --nav-link-hover: var(--accent-color);
     --nav-border: #e0e0e0;
     --menu-bar: #42A11A;
 }
@@ -58,11 +58,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     overscroll-behavior-y: none;
-}
-
-body.dark-mode {
-    background: radial-gradient(circle at center, #2A5C2A 0%, #061103 100%) fixed;
-    background-size: cover;
 }
 
 .container {
@@ -104,12 +99,12 @@ h1 {
 }
 
 .changing-text {
-  color: var(--changing-text-color, #42a11a); /* Fallback to light mode color */
+  color: var(--changing-text-color, #42A11A); /* Fallback to light mode color */
   font-weight: bold;
 }
 
 body.dark-mode .changing-text {
-  color: var(--changing-text-color-dark, #7fd858); /* Dark mode color */
+  color: var(--changing-text-color-dark, #42A91A); /* Dark mode color */
 }
 
 h2 {
@@ -408,7 +403,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 .dark-mode .main-nav a:hover,
 .dark-mode .main-nav a:focus {
     color: #1E1E1E; 
-    background-color: #7fd858; 
+    background-color: #42A11A; 
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -471,7 +466,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
   margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
-  background-color: transparent;
+  background-color: var(--body-bg); /* previously: transparent - changed to avoid bokeh visibility behind text content */
   border: 1px solid var(--divider-color);
   transition: all 0.3s ease;
 }
@@ -504,7 +499,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 }
 
 body.dark-mode .accordion-button[aria-expanded="true"] {
-  background-color: #7fd858; 
+  background-color: #42A11A; 
   color: #1E1E1E;
   border-bottom: 1px solid var(--accent-color);
 }
@@ -545,7 +540,7 @@ body.dark-mode .accordion-button {
 }
 
 body.dark-mode .accordion-button:hover {
-  background-color: #7fd858;
+  background-color: #42A11A;
   color: #1E1E1E;
 }
 
@@ -790,34 +785,33 @@ body.dark-mode .accordion-content p {
 
 /* --- Dark Mode Styles --- */
 body.dark-mode {
-    --body-bg: #181818;
+    --body-bg: #1E1E1E;  /* #1E1E1E for #42A11A (or) #282828 for #7fd858 , for WCAG 2.0 Level AA Contrast */
     --text-color: #E0E0E0;
     --text-color-light: rgba(224, 224, 224, 0.7);
     --header-bg: transparent;
     --footer-bg: transparent;
     --header-text: var(--text-color);
     --footer-text: var(--text-color);
-    --accent-color: #7fd858;
-    --accent-color-darker: #42A11A;
+    --accent-color: #42A11A;  /* alt. #42A21A - #42A91A if body-bg: #282828 , for WCAG 2.0 Level AA Contrast */
+    --accent-color-darker: #6ac048;
     --heading-color: var(--text-color);
     --logo-color: var(--text-color);
     --link-color: #E0E0E0;
     --link-hover-color: var(--accent-color);
-    --box-bg: #181818;
-    --box-border: #181818;
-    --box-shadow: #181818;
+    --box-bg: #1E1E1E;
+    --box-border: #1E1E1E;
+    --box-shadow: #1E1E1E;
     --icon-fill: var(--link-color);
     --icon-hover-fill: var(--accent-color);
     --divider-color: var(--accent-color);
-    --email-row-bg: transparent; /* previously #1c2e14 */
-    --email-row-border: #7fd858;
+    --email-row-bg: var(--body-bg); /* previously #1c2e14 or 'transparent' */
+    --email-row-border: #42A11A;
     --copy-button-color: #ffffff;
     --copy-button-hover-color: var(--accent-color);
     --toggle-bg: #555;
     --toggle-slider: #ffffff;
-    --toggle-icon: #000000;
-  /* --nav-bg: #345825; */
-    --nav-bg: radial-gradient(circle at center, #2A5C2A 0%, #061103 100%);
+    --toggle-icon: #1E1E1E;
+    --nav-bg: #1E1E1E; 
     --nav-link: #E0E0E0;
     --nav-link-hover: var(--accent-color);
     --nav-border: #333333;
@@ -1013,4 +1007,32 @@ body.dark-mode .profile-photo {
     .header-controls {
         padding: 0 2rem;
     }
+}
+
+/* Bokeh Container (covers full page behind content) */
+.bokeh-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--doc-height);
+  min-height: 100vh;
+  z-index: -1; /* Behind everything */
+  pointer-events: none; /* Ignore clicks */
+  overflow: visible;
+}
+
+/* Bokeh Elements (static glowing circles) */
+.bokeh {
+  position: absolute;
+  border-radius: 50%;
+  /* opacity: 0.5;  Balanced transparency */
+  filter: blur(1.5px); /* blur: 1.5 (original) to 2.5 */
+  background: rgba(66, 161, 26, 0.8); /* adjust final number 0.1 to 1.0 for intensity */
+  mix-blend-mode: screen; /* Adds glow effect */
+}
+
+.dark-mode .bokeh {
+  background: rgba(66, 161, 26, 0.9); /* adjust final number 0.1 to 1.0 for intensity */
+  filter: blur(2px) brightness(1.2); /* blur: 2 (original) to 3.5 */
 }
