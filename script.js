@@ -2,13 +2,13 @@
 function initAccordion() {
   const accordionButtons = document.querySelectorAll('.accordion-button');
   
-  /* // All accordion items start collapsed
+  // All accordion items start collapsed
   accordionButtons.forEach(button => {
     const content = button.nextElementSibling;
     button.setAttribute('aria-expanded', 'false'); // All items start collapsed
-    content.style.maxHeight = '0'; // All contents hidden */
+    content.style.maxHeight = '0'; // All contents hidden 
 
-  // First accordion item starts expanded, others collapsed
+  /* // First accordion item starts expanded, others collapsed
   accordionButtons.forEach((button, index) => {
   const content = button.nextElementSibling;
   
@@ -17,7 +17,7 @@ function initAccordion() {
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
-  }
+  }  // End of 'First accordion item starts expanded' version (comment out section: 'All accordion items start collapsed', to implement) */
     
     // ===== CURRENT IMPLEMENTATION (multiple open) =====
     button.addEventListener('click', () => {
