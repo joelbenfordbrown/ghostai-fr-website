@@ -60,6 +60,30 @@ body {
     overscroll-behavior-y: none;
 }
 
+/* frosted overlay theme settings - two tint versions for each mode */
+
+/* warning: frosted overlay helps maintain footer structure (removes overflow), so keep this overlay even if frosted effect not required (just change settings to remove effect) 
+   as footer structure overflow issue easier to fix with this overlay whilst maintaining prior fix for footer legal text and privacy policy text alignment issues */
+
+.frosted-overlay {
+  /* blur settings: 8px or to remove: 0 */
+    backdrop-filter: blur(0);  /* frosted overlay setting: 8px , no effect: 0 (no px needed) */
+  -webkit-backdrop-filter: blur(0); /* Safari support */ /* frosted overlay setting: 8px , no effect: 0 (no px needed) */
+  height: 100%; /* Previously min-height: 100vh - Full viewport height, but issues with incomplete coverage of footer below legal text, so maintain height: 100% */
+  box-sizing: border-box; /* Prevents padding issues */
+/* background: rgba(245, 245, 245, 0.85);  stronger tint */
+/*  background: rgba(255, 255, 255, 0.5);  lighter tint (main) */
+    background: transparent;  /* removes tint & frosted overlay effect */  
+}
+
+body.dark-mode .frosted-overlay {
+/* background: rgba(25, 25, 30, 0.85);  stronger tint */
+/*  background: rgba(15, 15, 20, 0.6); /* lighter tint (main) */
+    background: transparent;  /* removes tint & frosted overlay effect */ 
+}
+
+/* end of frosted overlay theme settings */
+
 .container {
     width: 100%;
     max-width: 1100px;
@@ -875,7 +899,7 @@ body.dark-mode {
     --nav-link-hover: var(--accent-color);
     --nav-border: #333333;
     --menu-bar: var(--accent-color);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); /* check if this is an error omitting -- from text-shadow? */
 }
 
 .dark-mode .hero-text .subtitle,
