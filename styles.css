@@ -749,6 +749,67 @@ body.dark-mode .accordion-content p {
     text-align: center;
 }
 
+/* Centred Text Section - Currently: Privacy Policy */
+.centred-text-container {
+  text-align: center;
+  padding: 0 1.5rem;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0; 
+  margin: 0 auto;
+  max-width: 800px; 
+  transform: translateY(calc(-100% + 20px));
+}
+
+.centred-text {
+  font-size: 0.75rem !important; 
+  color: var(--text-color-light);
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 800px;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Dark mode adjustment */
+.dark-mode .centred-text {
+  color: var(--text-color-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .centred-text-container {
+    transform: translateY(calc(-100% + 50px)); 
+  }
+  .centred-text {
+    padding-bottom: 8px; 
+    max-width: 70%; 
+  }
+
+  @media (max-width: 480px) {
+    .centred-text-container {
+      transform: translateY(calc(-100% + 78px)); 
+    }
+    .centred-text {
+      padding-bottom: 8px; 
+      max-width: 70%; 
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .centred-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .centred-text {
+    font-size: 1rem;
+  }
+}
+
 /* Back to Top */
 .back-to-top-container {
     text-align: right;
