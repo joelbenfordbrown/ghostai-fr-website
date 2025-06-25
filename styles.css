@@ -774,7 +774,7 @@ body.dark-mode .accordion-content p {
 
 /* Dark mode adjustment */
 .dark-mode .centred-text {
-  color: var(--text-color-light);
+  color: var(--footer-text);
 }
 
 /* Responsive adjustments */
