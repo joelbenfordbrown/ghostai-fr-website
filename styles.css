@@ -781,19 +781,17 @@ body.dark-mode .accordion-content p {
 @media (max-width: 767px) {
   .centred-text-container {
     transform: translateY(calc(-100% + 50px)); 
+    pointer-events: none;
   }
   .centred-text {
     padding-bottom: 8px; 
     max-width: 70%; 
+    pointer-events: auto;
   }
 
   @media (max-width: 480px) {
     .centred-text-container {
       transform: translateY(calc(-100% + 78px)); 
-    }
-    .centred-text {
-      padding-bottom: 8px; 
-      max-width: 70%; 
     }
   }
 }
