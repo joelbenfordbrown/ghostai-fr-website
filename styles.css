@@ -8,8 +8,8 @@
 /* CSS Variables Definition */
 :root {
     /* Light Mode Colors */
-    --body-bg: #ffffff;
-    --text-color: #2A5C2A;  /* alt. #42861A  for WCAG 2.0 Level AA Contrast */
+    --body-bg: #FDF9F2; /* #42821A for WCAG 2.0 Level AA Contrast for new #FDF9F2 background colour */
+    --text-color: #2A5C2A;  /* alt. #42861A  for WCAG 2.0 Level AA Contrast for white background colour */
     --text-color-light: rgba(42, 92, 42, 0.8);
     --header-bg: transparent; /* previously #f8f9fa */
     --footer-bg: transparent; /* previously #f8f9fa */
@@ -21,9 +21,9 @@
     --logo-color: #2a5c2a;
     --link-color: #2a5c2a;
     --link-hover-color: #42A11A;
-    --box-bg: #ffffff;
-    --box-border: #ffffff;
-    --box-shadow: #ffffff;
+    --box-bg: #FDF9F2;
+    --box-border: #FDF9F2;
+    --box-shadow: #FDF9F2;
     --icon-fill: #2a5c2a;
     --icon-hover-fill: #42A11A;
     --divider-color: #42A11A;
@@ -32,12 +32,12 @@
     --copy-button-color: #2a5c2a;
     --copy-button-hover-color: var(--icon-hover-fill);
     --toggle-bg: #ccc;
-    --toggle-slider: #fff;
+    --toggle-slider: #FDF9F2;
     --toggle-icon: #2A5C2A;
-    --nav-bg: #ffffff;
+    --nav-bg: #FDF9F2;
     --nav-link: #2a5c2a;
     --nav-link-hover: var(--accent-color);
-    --nav-border: #e0e0e0;
+    --nav-border: #FDF9F2;
     --menu-bar: #42A11A;
 }
 
@@ -865,15 +865,15 @@ body.dark-mode {
     --divider-color: var(--accent-color);
     --email-row-bg: transparent; /* previously #1c2e14 */
     --email-row-border: #42A11A;
-    --copy-button-color: #ffffff;
+    --copy-button-color: #E0E0E0;
     --copy-button-hover-color: var(--accent-color);
     --toggle-bg: #555;
-    --toggle-slider: #ffffff;
+    --toggle-slider: #E0E0E0;
     --toggle-icon: #1E1E1E;
     --nav-bg: #1E1E1E; 
     --nav-link: #E0E0E0;
     --nav-link-hover: var(--accent-color);
-    --nav-border: #333333;
+    --nav-border: #1E1E1E;
     --menu-bar: var(--accent-color);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
@@ -886,7 +886,7 @@ body.dark-mode {
     color: var(--text-color);
 }
 .dark-mode .content-box strong {
-    color: #ffffff;
+    color: #E0E0E0;
 }
 .dark-mode .vision-statement-title strong {
    color: var(--heading-color);
