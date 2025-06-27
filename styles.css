@@ -27,7 +27,7 @@
     --icon-fill: #2a5c2a;
     --icon-hover-fill: #42A11A;
     --divider-color: #42A11A;
-    --email-row-bg: var(--body-bg); /* previously #f8f9fa or 'transparent' */
+    --email-row-bg: transparent; /* previously #f8f9fa */
     --email-row-border: #42A11A;
     --copy-button-color: #2a5c2a;
     --copy-button-hover-color: var(--icon-hover-fill);
@@ -59,30 +59,6 @@ body {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     overscroll-behavior-y: none;
 }
-
-/* frosted overlay theme settings - two tint versions for each mode */
-
-/* warning: frosted overlay helps maintain footer structure (removes overflow), so keep this overlay even if frosted effect not required (just change settings to remove effect) 
-   as footer structure overflow issue easier to fix with this overlay whilst maintaining prior fix for footer legal text and privacy policy text alignment issues */
-
-.frosted-overlay {
-  /* blur settings: 8px or to remove: 0 */
-    backdrop-filter: blur(0);  /* frosted overlay setting: 8px , no effect: 0 (no px needed) */
-  -webkit-backdrop-filter: blur(0); /* Safari support */ /* frosted overlay setting: 8px , no effect: 0 (no px needed) */
-  height: 100%; /* Previously min-height: 100vh - Full viewport height, but issues with incomplete coverage of footer below legal text, so maintain height: 100% */
-  box-sizing: border-box; /* Prevents padding issues */
-/* background: rgba(245, 245, 245, 0.85);  stronger tint */
-/*  background: rgba(255, 255, 255, 0.5);  lighter tint (main) */
-    background: transparent;  /* removes tint & frosted overlay effect */  
-}
-
-body.dark-mode .frosted-overlay {
-/* background: rgba(25, 25, 30, 0.85);  stronger tint */
-/*  background: rgba(15, 15, 20, 0.6); /* lighter tint (main) */
-    background: transparent;  /* removes tint & frosted overlay effect */ 
-}
-
-/* end of frosted overlay theme settings */
 
 .container {
     width: 100%;
@@ -490,7 +466,7 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
   margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
-  background-color: var(--body-bg); /* previously: transparent - changed to avoid bokeh visibility behind text content */
+  background-color: transparent;
   border: 1px solid var(--divider-color);
   transition: all 0.3s ease;
 }
@@ -887,7 +863,7 @@ body.dark-mode {
     --icon-fill: var(--link-color);
     --icon-hover-fill: var(--accent-color);
     --divider-color: var(--accent-color);
-    --email-row-bg: var(--body-bg); /* previously #1c2e14 or 'transparent' */
+    --email-row-bg: transparent; /* previously #1c2e14 */
     --email-row-border: #42A11A;
     --copy-button-color: #ffffff;
     --copy-button-hover-color: var(--accent-color);
@@ -899,7 +875,7 @@ body.dark-mode {
     --nav-link-hover: var(--accent-color);
     --nav-border: #333333;
     --menu-bar: var(--accent-color);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); /* check if this is an error omitting -- from text-shadow? */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .dark-mode .hero-text .subtitle,
@@ -1090,32 +1066,4 @@ body.dark-mode .profile-photo {
     .header-controls {
         padding: 0 2rem;
     }
-}
-
-/* Bokeh Container (covers full page behind content) */
-.bokeh-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--doc-height);
-  min-height: 100vh;
-  z-index: -1; /* Behind everything */
-  pointer-events: none; /* Ignore clicks */
-  overflow: visible;
-}
-
-/* Bokeh Elements (static glowing circles) */
-.bokeh {
-  position: absolute;
-  border-radius: 50%;
-  /* opacity: 0.5;  Balanced transparency */
-  filter: blur(1.5px); /* blur: 1.5 (original) to 2.5 */
-  background: rgba(66, 161, 26, 0.8); /* adjust final number 0.1 to 1.0 for intensity */
-  mix-blend-mode: screen; /* Adds glow effect */
-}
-
-.dark-mode .bokeh {
-  background: rgba(66, 161, 26, 0.9); /* adjust final number 0.1 to 1.0 for intensity */
-  filter: blur(2px) brightness(1.2); /* blur: 2 (original) to 3.5 */
 }

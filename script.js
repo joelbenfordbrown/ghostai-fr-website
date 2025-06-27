@@ -2,13 +2,13 @@
 function initAccordion() {
   const accordionButtons = document.querySelectorAll('.accordion-button');
   
-  // All accordion items start collapsed
+  /* // All accordion items start collapsed
   accordionButtons.forEach(button => {
     const content = button.nextElementSibling;
     button.setAttribute('aria-expanded', 'false'); // All items start collapsed
-    content.style.maxHeight = '0'; // All contents hidden 
+    content.style.maxHeight = '0'; // All contents hidden */
 
-  /* // First accordion item starts expanded, others collapsed
+  // First accordion item starts expanded, others collapsed
   accordionButtons.forEach((button, index) => {
   const content = button.nextElementSibling;
   
@@ -17,7 +17,7 @@ function initAccordion() {
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
-  }  // End of 'First accordion item starts expanded' version (comment out section: 'All accordion items start collapsed', to implement) */
+  }
     
     // ===== CURRENT IMPLEMENTATION (multiple open) =====
     button.addEventListener('click', () => {
@@ -265,31 +265,7 @@ if (savedTheme) {
       timeoutId = setTimeout(type, typingSpeed);
     }
 
-    // Start typing animation and set up visibility listener
+    // Start animation and set up visibility listener
     type();
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
-    // ▼ Bokeh Light Effect Implementation ▼
-    const container = document.getElementById("bokeh-container");
-    if (container) {
-        const updateHeight = () => {
-            const scrollHeight = Math.max(document.body.scrollHeight, window.innerHeight * 1.5);
-            document.documentElement.style.setProperty('--doc-height', `${scrollHeight}px`);
-        };
-        updateHeight();
-        window.addEventListener('resize', updateHeight);
-        for (let i = 0; i < 40; i++) {
-            const bokeh = document.createElement("div");
-            bokeh.className = "bokeh";
-            bokeh.style.left = `${Math.random() * 75 + 10}%`;
-            bokeh.style.top = `${Math.random() * 100}%`;
-            const size = Math.random() * 80 + 20;
-            bokeh.style.width = `${size}px`;
-            bokeh.style.height = `${size}px`;
-            bokeh.style.opacity = Math.random() * 0.5 + 0.1;
-            container.appendChild(bokeh);
-        }
-    }
-    // End of Bokeh Light Effect Implementation
-
 }); // End DOMContentLoaded
