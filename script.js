@@ -100,7 +100,7 @@ if (savedTheme) {
     setTheme(savedTheme === 'dark', false);
 } else {
     // Default mode for all devices
-    setTheme(false, true); // <-- Default: (true, true) = dark mode; (false, true) = light mode
+    setTheme(true, true); // <-- Default: (true, true) = dark mode; (false, true) = light mode
 }
 
     // Add listener for toggle change
