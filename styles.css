@@ -569,6 +569,37 @@ body.dark-mode .accordion-content p {
   }
 }
 
+/* Spiral icon for accordion buttons */
+.accordion-spiral {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* Light mode - normal state */
+body:not(.dark-mode) .accordion-spiral {
+    content: url('assets/spirals/100px/spiral-light-2a5c2a.png');
+}
+
+/* Light mode - hover state AND expanded state */
+body:not(.dark-mode) .accordion-button:hover .accordion-spiral,
+body:not(.dark-mode) .accordion-button[aria-expanded="true"] .accordion-spiral {
+    content: url('assets/spirals/100px/spiral-light-hover-ffffff.png');
+}
+
+/* Dark mode - normal state */
+body.dark-mode .accordion-spiral {
+    content: url('assets/spirals/100px/spiral-dark-e0e0e0.png');
+}
+
+/* Dark mode - hover state AND expanded state */
+body.dark-mode .accordion-button:hover .accordion-spiral,
+body.dark-mode .accordion-button[aria-expanded="true"] .accordion-spiral {
+    content: url('assets/spirals/100px/spiral-dark-hover-1e1e1e.png');
+}
+
 /* Contact Box */
 .contact-box .attribution-content {
     text-align: center;
