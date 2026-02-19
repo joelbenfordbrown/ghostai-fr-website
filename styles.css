@@ -1108,3 +1108,9 @@ body.dark-mode .profile-photo {
         padding: 0 2rem;
     }
 }
+
+/* TEMPORARILY HIDE DARK MODE TOGGLE */
+.theme-switch-wrapper,
+#theme-checkbox {
+    display: none !important;
+}
