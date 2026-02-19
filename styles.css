@@ -479,8 +479,8 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
   border: none;
   cursor: pointer;
   display: flex;
-  justify-content: flex-start;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 1px;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
