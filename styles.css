@@ -586,7 +586,8 @@ body.dark-mode .accordion-content p {
         width: 1.2em;
         height: 1.2em;
     }
-
+}
+    
 /* Light mode - normal state */
 body:not(.dark-mode) .accordion-spiral {
     content: url('assets/spirals/100px/spiral-light-2a5c2a.png');
