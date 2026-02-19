@@ -524,7 +524,6 @@ body.dark-mode .accordion-button[aria-expanded="true"] {
   font-size: 1.2rem;
   transition: transform 0.3s ease, color 0.3s ease;
   color: inherit;
-  margin-left: auto;
 }
 
 .accordion-button[aria-expanded="true"] .accordion-icon {
