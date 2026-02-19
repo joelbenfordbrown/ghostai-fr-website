@@ -577,7 +577,7 @@ body.dark-mode .accordion-content p {
     height: 1em;
     vertical-align: middle;
     display: inline-block;
-    margin-right: 2px;
+    margin-right: 4px;
     flex-shrink: 0;
 }
 
