@@ -573,8 +573,8 @@ body.dark-mode .accordion-content p {
 
 /* Spiral icon for accordion buttons */
 .accordion-spiral {
-    width: 1em;
-    height: 1em;
+    width: 1.2em;
+    height: 1.2em;
     vertical-align: middle;
     display: inline-block;
     margin-right: 4px;
