@@ -133,6 +133,20 @@ if (savedTheme) {
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.scrollY - headerHeightEstimate;
                      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                
+                    // If this is the Call To Action link, open its accordion
+                    if (targetId === 'cta') {
+                        // Find the accordion button with "Funding / Acquisition?" text
+                        const ctaAccordionButton = Array.from(document.querySelectorAll('.accordion-button')).find(
+                            button => button.textContent.includes('Funding / Acquisition?')
+                        );
+                
+                        // If button exists and is not already expanded, click it to open
+                        if (ctaAccordionButton && ctaAccordionButton.getAttribute('aria-expanded') === 'false') {
+                            ctaAccordionButton.click();
+                        }
+                    }
+                  
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.classList.remove('active');
