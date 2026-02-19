@@ -1109,7 +1109,7 @@ body.dark-mode .profile-photo {
     }
 }
 
-/* TEMPORARILY HIDE DARK MODE TOGGLE */
+/* TEMPORARILY HIDE DARK MODE TOGGLE + Added HTML file line 102 spacer div to push the menu icon back to the right when dark mode toggle removed */
 .theme-switch-wrapper,
 #theme-checkbox {
     display: none !important;
