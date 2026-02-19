@@ -590,7 +590,7 @@ body.dark-mode .accordion-content p {
     
 /* Light mode - normal state */
 body:not(.dark-mode) .accordion-spiral {
-    content: url('assets/spirals/100px/spiral-light-2a5c2a.png');
+    content: url('assets/spirals/100px/spiral-light-42a11a.png');
 }
 
 /* Light mode - hover state AND expanded state */
