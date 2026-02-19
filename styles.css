@@ -575,7 +575,7 @@ body.dark-mode .accordion-content p {
     height: 1em;
     vertical-align: middle;
     display: inline-block;
-    margin-right: 8px;
+    margin-right: auto;
 }
 
 /* Light mode - normal state */
