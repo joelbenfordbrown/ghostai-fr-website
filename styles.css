@@ -27,8 +27,8 @@
     --icon-fill: #2a5c2a;
     --icon-hover-fill: #42A11A;
     --divider-color: #42A11A;
-    --email-row-bg: #F5F0E4; /* previously #f8f9fa . Changed from "transparent" to #F5F0E4 for warmth to maintain new content box to background separation in colour */ */
-    --email-row-border: #42A11A;
+    --email-row-bg: #F5F0E4; /* previously #f8f9fa . Changed from "transparent" to #F5F0E4 for warmth to maintain new content box to background separation in colour */
+    --email-row-border: #42A11A;    
     --copy-button-color: #2a5c2a;
     --copy-button-hover-color: var(--icon-hover-fill);
     --toggle-bg: #ccc;
