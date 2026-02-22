@@ -8,11 +8,11 @@
 /* CSS Variables Definition */
 :root {
     /* Light Mode Colors */
-    --body-bg: #F5F0E4; /* #42821A for WCAG 2.0 Level AA Contrast for new #FDF9F2 background colour. Updated from: #FDF9F2 to: #F5F0E4 for warmth */
+    --body-bg: #FDF9F2; /* #42821A for WCAG 2.0 Level AA Contrast for new #FDF9F2 background colour. Updated from: #FDF9F2 to: #F5F0E4 for warmth (reverted) */
     --text-color: #2A5C2A;  /* alt. #42861A  for WCAG 2.0 Level AA Contrast for white background colour */
     --text-color-light: rgba(42, 92, 42, 0.8);
-    --header-bg: transparent; /* previously #f8f9fa */
-    --footer-bg: transparent; /* previously #f8f9fa */
+    --header-bg: #F5F0E4; /* previously #f8f9fa . Changed from "transparent" to #F5F0E4 for warmth to maintain new header to body separation in colour */
+    --footer-bg: #F5F0E4; /* previously #f8f9fa . Changed from "transparent" to #F5F0E4 for warmth to maintain new footer to body separation in colour */
     --header-text: #2A5C2A;
     --footer-text: #2A5C2A;
     --accent-color: #42A11A;  /* alt. #42861A for WCAG 2.0 Level AA Contrast */
@@ -34,10 +34,10 @@
     --toggle-bg: #ccc;
     --toggle-slider: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
     --toggle-icon: #2A5C2A;
-    --nav-bg: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
+    --nav-bg: #FDF9F2;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth (reverted) */
     --nav-link: #2a5c2a;
     --nav-link-hover: var(--accent-color);
-    --nav-border: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
+    --nav-border: #FDF9F2;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth (reverted) */
     --menu-bar: #42A11A;
 }
 
