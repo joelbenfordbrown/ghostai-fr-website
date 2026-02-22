@@ -8,7 +8,7 @@
 /* CSS Variables Definition */
 :root {
     /* Light Mode Colors */
-    --body-bg: #FDF9F2; /* #42821A for WCAG 2.0 Level AA Contrast for new #FDF9F2 background colour */
+    --body-bg: #F5F0E4; /* #42821A for WCAG 2.0 Level AA Contrast for new #FDF9F2 background colour. Updated from: #FDF9F2 to: #F5F0E4 for warmth */
     --text-color: #2A5C2A;  /* alt. #42861A  for WCAG 2.0 Level AA Contrast for white background colour */
     --text-color-light: rgba(42, 92, 42, 0.8);
     --header-bg: transparent; /* previously #f8f9fa */
@@ -21,9 +21,9 @@
     --logo-color: #2a5c2a;
     --link-color: #2a5c2a;
     --link-hover-color: #42A11A;
-    --box-bg: #FDF9F2;
-    --box-border: #FDF9F2;
-    --box-shadow: #FDF9F2;
+    --box-bg: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
+    --box-border: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
+    --box-shadow: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
     --icon-fill: #2a5c2a;
     --icon-hover-fill: #42A11A;
     --divider-color: #42A11A;
@@ -32,12 +32,12 @@
     --copy-button-color: #2a5c2a;
     --copy-button-hover-color: var(--icon-hover-fill);
     --toggle-bg: #ccc;
-    --toggle-slider: #FDF9F2;
+    --toggle-slider: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
     --toggle-icon: #2A5C2A;
-    --nav-bg: #FDF9F2;
+    --nav-bg: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
     --nav-link: #2a5c2a;
     --nav-link-hover: var(--accent-color);
-    --nav-border: #FDF9F2;
+    --nav-border: #F5F0E4;    /* Updated from: #FDF9F2 to: #F5F0E4 for warmth */
     --menu-bar: #42A11A;
 }
 
