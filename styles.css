@@ -1071,6 +1071,10 @@ body.dark-mode .profile-photo {
     .content-box {
         padding: 2rem;
     }
+    /* Slideshow section: matches .content-box desktop padding exactly */
+    .ontology-slideshow-section {
+        padding: 0 2rem;
+    }
     .contact-box .attribution-content {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
@@ -1113,18 +1117,13 @@ body.dark-mode .profile-photo {
 /* 12-Element Ontology Slideshow Section            */
 /* ================================================ */
 
-/* Outer section: matches existing section spacing */
+/* Outer section: matches existing section spacing                      */
+/* padding: 0 1.5rem matches .content-box mobile padding on all devices */
 .ontology-slideshow-section {
     margin-bottom: 2.5rem;
     position: relative;
     scroll-margin-top: 60px;
-}
-
-/* Override content-box padding for slideshow wrapper at ALL screen sizes */
-/* Uses !important to ensure desktop media query padding: 2rem is overridden */
-/* Uses specific class combo to avoid affecting other content-boxes          */
-.content-box.ontology-content-box {
-    padding: 0 !important;
+    padding: 0 1.5rem;
 }
 
 /* Slideshow box: matches accordion item border style exactly */
