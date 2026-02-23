@@ -1120,6 +1120,13 @@ body.dark-mode .profile-photo {
     scroll-margin-top: 60px;
 }
 
+/* Override content-box padding for slideshow wrapper            */
+/* Removes default content-box padding so border sits flush      */
+/* Uses specific class combo to avoid affecting other content-boxes */
+.content-box.ontology-content-box {
+    padding: 0;
+}
+
 /* Slideshow box: matches accordion item border style exactly */
 /* border uses var(--divider-color) to support light/dark mode */
 .ontology-slideshow-box {
