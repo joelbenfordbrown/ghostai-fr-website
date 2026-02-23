@@ -282,9 +282,8 @@ if (savedTheme) {
     // Start animation and set up visibility listener
     type();
     document.addEventListener('visibilitychange', handleVisibilityChange);
-}); // End DOMContentLoaded
 
-// ================================================
+    // ================================================
     // 12-Element Ontology Slideshow
     // ================================================
     // Cross-fade slideshow cycling through all 21 slides
@@ -348,7 +347,9 @@ if (savedTheme) {
         });
 
         // Start the slideshow on page load
-        ontologyStartSlideshow();
+        // Wrapped in setTimeout for iOS Safari compatibility —
+        // ensures DOM is fully ready before slideshow initialises
+        setTimeout(ontologyStartSlideshow, 100);
 
     } else {
         console.warn('Ontology slideshow: no slides found. Check .ontology-slide elements in index.html.');
@@ -356,3 +357,6 @@ if (savedTheme) {
     // ================================================
     // End: 12-Element Ontology Slideshow
     // ================================================
+
+}); // End DOMContentLoaded
+
