@@ -10,13 +10,12 @@
    WHAT IT DOES:
      • Fixed <canvas> behind all content (z-index 0,
        pointer-events none — invisible to all clicks/touch)
-     • ~160 tiny stars radiating outward from screen centre —
-       slow near centre, faster toward edges — creates a
-       parallax depth illusion of flying through space
-     • Shapes: crisp sharp dot (most) + delicate 4-point cross
-     • Twinkle = slow sine-wave breath (8–30s cycle) — no flicker
+     • Stars radiate outward from screen centre — creates the
+       illusion of moving through space / parallax depth
+     • Crisp sharp points only — no halos, no blobs
+     • Twinkle = slow sine-wave breath — never flickers
      • Colours set once at star birth, never changed mid-flight
-     • Occasional shooting stars every 3–7 seconds (up to 2 at once)
+     • Occasional shooting stars — graceful diagonal streaks
      • Respects prefers-reduced-motion (static, no animation)
      • Auto-resizes; pauses on hidden tab (battery friendly)
    ============================================================= */
@@ -32,8 +31,8 @@
   Object.assign(canvas.style, {
     position: "fixed", top: "0", left: "0",
     width: "100%", height: "100%",
-    pointerEvents: "none",   // never intercepts clicks or touch
-    zIndex: "0",             // sits behind all existing content
+    pointerEvents: "none",
+    zIndex: "0",
     display: "block",
   });
   document.body.insertBefore(canvas, document.body.firstChild);
@@ -44,7 +43,7 @@
 
   let W = canvas.width  = window.innerWidth;
   let H = canvas.height = window.innerHeight;
-  let cx = W / 2;  // centre origin point — stars radiate outward from here
+  let cx = W / 2;  // origin point — centre of screen
   let cy = H / 2;
 
   window.addEventListener("resize", () => {
@@ -55,86 +54,92 @@
   }, { passive: true });
 
   /* ── Palette ─────────────────────────────────────────────────
-     Colour picked ONCE per star at birth. Never randomised again.
-     Weighted toward vivid signature greens so stars read as
-     clearly green against the warm cream background, not grey.  */
+     Vivid greens centred on the site's signature #42a11a.
+     Colour picked ONCE per star at birth — never changed again.
+     Weighted toward saturated greens so stars read as clearly
+     green against the warm cream background, not grey-green.   */
   const PALETTE = [
     [66,  161,  26],  // #42a11a — signature green (most common)
-    [66,  161,  26],  // #42a11a — repeated to increase frequency
-    [82,  195,  35],  // bright lime green
-    [82,  195,  35],  // repeated to increase frequency
-    [54,  140,  18],  // deep forest green
-    [100, 200,  60],  // vivid spring green
-    [130, 215,  80],  // medium bright green
-    [180, 235, 130],  // pale but still green — not white
+    [66,  161,  26],  // repeated to increase weighting
+    [78,  185,  30],  // bright lime
+    [78,  185,  30],  // repeated to increase weighting
+    [52,  138,  18],  // deep forest green
+    [100, 200,  55],  // vivid spring green
+    [120, 215,  70],  // lighter vivid green
+    [150, 225, 100],  // pale but still clearly green
   ];
   function randRGB() { return PALETTE[Math.floor(Math.random() * PALETTE.length)]; }
 
   /* ── Star ────────────────────────────────────────────────────
-     Movement model: each star is born near the screen centre
-     and travels outward along a fixed angle — like the viewer
-     is flying forward through space. Speed scales gently with
-     distance from centre, creating a natural parallax effect.
+     Each star is born near the screen centre and travels
+     outward along a fixed angle — like flying through space.
 
-     Twinkle = opacity breathing via sine wave:
+     Movement model:
+       • Starts slow near centre (distant stars)
+       • Accelerates gently as it moves outward (closer stars)
+       • This speed differential creates parallax depth
+       • Recycled back to centre when it exits the screen
+
+     Twinkle = sine wave on opacity:
        opacity = midAlpha + sin(phase) × amplitude
-       twinkleRate 0.003–0.008 rad/frame → full cycle = 8–30s
-       At 60fps: completely imperceptible as flicker — just alive.
-  */
+       Full cycle: 8–30 seconds — imperceptible as flicker,
+       just reads as the star being alive and breathing.        */
   class Star {
     constructor(scatter) { this.birth(scatter); }
 
     birth(scatter) {
-      /* Random outward angle — determines direction of travel */
+      /* Random direction from centre — fixed for star's lifetime */
       this.angle = Math.random() * Math.PI * 2;
 
-      /* Distance from centre.
-         scatter=true  → spread across full canvas on first load.
-         scatter=false → always born near centre, travels outward. */
+      /* scatter=true on init: spread across full canvas.
+         scatter=false on recycle: always re-born near centre.  */
       const maxD = Math.sqrt(cx * cx + cy * cy);
       this.dist  = scatter
-        ? Math.random() * maxD * 0.9
-        : Math.random() * maxD * 0.12;
+        ? Math.random() * maxD * 0.9    // initial full spread
+        : Math.random() * maxD * 0.12;  // recycled — near centre
 
       this.speed   = 0.08 + Math.random() * 0.22;  // base outward speed
-      this.r       = 0.4  + Math.random() * 1.0;   // tiny — 0.4 to 1.4px
+      this.r       = 0.4  + Math.random() * 1.0;   // radius: 0.4–1.4px tiny
       this.isCross = Math.random() < 0.15;          // 15% are 4-point crosses
 
-      /* Colour locked at birth — never changes */
+      /* Colour — set once, never changes */
       this.rgb = randRGB();
 
-      /* Sine-wave twinkle parameters */
+      /* Twinkle parameters */
       this.phase       = Math.random() * Math.PI * 2;
-      this.twinkleRate = 0.003 + Math.random() * 0.008;
-      this.midAlpha    = 0.30 + Math.random() * 0.35;  // 0.30–0.65 — vivid but not harsh
-      this.amplitude   = 0.08 + Math.random() * 0.12;  // gentle breathing range
+      this.twinkleRate = 0.003 + Math.random() * 0.008; // 8–30s full cycle
+      this.midAlpha    = 0.30 + Math.random() * 0.35;   // 0.30–0.65 — visible
+      this.amplitude   = 0.08 + Math.random() * 0.12;   // gentle breathing
     }
 
     update() {
       const maxD = Math.sqrt(cx * cx + cy * cy);
-      /* Outward movement with gentle acceleration — reads as depth */
+
+      /* Outward movement — accelerates with distance for depth feel */
       this.dist += this.speed * (0.6 + this.dist / (maxD * 1.5));
       this.phase += this.twinkleRate;
-      /* Recycle star back to centre when it exits the screen */
+
+      /* Recycle when star exits visible area */
       if (this.dist > maxD * 1.1) this.birth(false);
     }
 
     draw() {
-      /* Convert polar coords to screen x,y */
+      /* Convert polar (angle + distance) to screen x,y */
       const x = cx + Math.cos(this.angle) * this.dist;
       const y = cy + Math.sin(this.angle) * this.dist;
 
-      /* Fade in near centre so stars don't pop into existence */
+      /* Fade in near centre so stars don't abruptly pop into view */
       const maxD   = Math.sqrt(cx * cx + cy * cy);
       const fadeIn = Math.min(1, this.dist / (maxD * 0.08));
-      const alpha  = (this.midAlpha + Math.sin(this.phase) * this.amplitude) * fadeIn;
+
+      const alpha = (this.midAlpha + Math.sin(this.phase) * this.amplitude) * fadeIn;
       const [r, g, b] = this.rgb;
 
       ctx.save();
-      ctx.globalAlpha = Math.min(alpha, 0.78); // hard ceiling — never garish
+      ctx.globalAlpha = Math.min(alpha, 0.78); // hard ceiling — never harsh
 
       if (!this.isCross) {
-        /* Crisp dot — no halo, no glow, clean sharp point of light */
+        /* Crisp dot — no halo, no glow, just a clean sharp point */
         ctx.beginPath();
         ctx.arc(x, y, this.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgb(${r},${g},${b})`;
@@ -156,8 +161,8 @@
   }
 
   /* ── Shooting star ───────────────────────────────────────────
-     Graceful diagonal streak with a fading gradient tail.
-     Fires every 3–7 seconds; up to 2 active simultaneously.   */
+     Graceful diagonal streaks with a fading gradient tail.
+     Fires every 3–7 seconds; up to 2 active at once.          */
   class ShootingStar {
     constructor() { this.active = false; }
 
@@ -165,12 +170,12 @@
       if (this.active) return;
       this.x     = Math.random() * W * 0.8 + W * 0.05;
       this.y     = Math.random() * H * 0.3;
-      const deg  = 15 + Math.random() * 35;   // gentle downward diagonal angle
-      const spd  = 4   + Math.random() * 4;
+      const deg  = 15 + Math.random() * 35;   // gentle downward diagonal
+      const spd  = 4  + Math.random() * 4;
       this.vx    = Math.cos(deg * Math.PI / 180) * spd;
       this.vy    = Math.sin(deg * Math.PI / 180) * spd;
-      this.alpha = 0.5  + Math.random() * 0.2; // starts gently, not harsh
-      this.tail  = 40   + Math.random() * 60;
+      this.alpha = 0.5 + Math.random() * 0.2; // starts gentle, not harsh
+      this.tail  = 40 + Math.random() * 60;
       this.active = true;
     }
 
@@ -178,7 +183,7 @@
       if (!this.active) return;
       this.x    += this.vx;
       this.y    += this.vy;
-      this.alpha -= 0.011;                      // slow graceful fade
+      this.alpha -= 0.011;                     // slow graceful fade
       if (this.alpha <= 0 || this.x > W + 80 || this.y > H + 80) {
         this.active = false;
       }
@@ -190,8 +195,8 @@
       const tx    = this.x - this.vx * steps;
       const ty    = this.y - this.vy * steps;
       const grad  = ctx.createLinearGradient(tx, ty, this.x, this.y);
-      grad.addColorStop(0, `rgba(160,225,120,0)`);
-      grad.addColorStop(1, `rgba(100,200,60,${this.alpha.toFixed(2)})`);
+      grad.addColorStop(0, `rgba(120,200,60,0)`);
+      grad.addColorStop(1, `rgba(66,161,26,${this.alpha.toFixed(2)})`);
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(tx, ty);
@@ -205,12 +210,12 @@
   }
 
   /* ── Initialise ──────────────────────────────────────────────
-     Stars spread across full canvas on load so the field looks
-     populated immediately rather than building from centre.    */
+     Stars scattered across full canvas on load so it looks
+     populated immediately — not building from centre.          */
   const COUNT  = Math.min(160, Math.floor((W * H) / 6000));
   const stars  = Array.from({ length: COUNT }, () => new Star(true));
 
-  /* Two shooting stars — can occasionally be active together */
+  /* Two shooting stars — can occasionally overlap for richness */
   const meteors = [new ShootingStar(), new ShootingStar()];
 
   function scheduleMeteor() {
@@ -218,11 +223,11 @@
       const idle = meteors.find(m => !m.active);
       if (idle) idle.fire();
       scheduleMeteor();
-    }, 3000 + Math.random() * 4000); // fires every 3–7 seconds
+    }, 3000 + Math.random() * 4000); // every 3–7 seconds
   }
   scheduleMeteor();
 
-  /* ── Animation loop ──────────────────────────────────────────*/
+  /* ── Animation loop ──────────────────────────────────────────  */
   let rafId;
   function animate() {
     ctx.clearRect(0, 0, W, H);
