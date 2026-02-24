@@ -132,6 +132,16 @@ h2::after {
     padding: 0;
 }
 
+.section-desc {
+    text-align: center;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.75;
+    margin-top: -0.75rem;
+    margin-bottom: 1.5rem;
+}
+
 p {
     margin-bottom: 1rem;
 }
