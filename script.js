@@ -282,4 +282,81 @@ if (savedTheme) {
     // Start animation and set up visibility listener
     type();
     document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // ================================================
+    // 12-Element Ontology Slideshow
+    // ================================================
+    // Cross-fade slideshow cycling through all 21 slides
+    // on continuous loop. Uses CSS class toggling only —
+    // no DOM manipulation of src or style attributes.
+    // ------------------------------------------------
+    // DISPLAY TIME: edit SLIDESHOW_DISPLAY_MS to change
+    // how long each image is shown (in milliseconds).
+    // Current setting: 3000 = 3 seconds per slide.
+    // ------------------------------------------------
+    // IMAGE COUNT: if images are added or removed from
+    // the assets/12-Element-Ontology/ folder, update
+    // the img tags in index.html to match. The JS reads
+    // all elements with class 'ontology-slide' so no
+    // change to this script is needed — it adapts
+    // automatically to however many slides exist in HTML.
+    // ================================================
+
+    const SLIDESHOW_DISPLAY_MS = 3000; // Edit this value to change display time per slide
+
+    const ontologySlides = document.querySelectorAll('.ontology-slide');
+
+    if (ontologySlides.length > 0) {
+        let ontologyCurrentIndex = 0;
+
+        // Pause slideshow when tab is hidden to save resources
+        // and prevent timing drift on return to tab
+        let ontologySlideshowInterval = null;
+
+        function ontologyNextSlide() {
+            // Remove active class from current slide
+            ontologySlides[ontologyCurrentIndex].classList.remove('ontology-slide--active');
+
+            // Advance index, looping back to 0 after last slide
+            ontologyCurrentIndex = (ontologyCurrentIndex + 1) % ontologySlides.length;
+
+            // Add active class to next slide
+            ontologySlides[ontologyCurrentIndex].classList.add('ontology-slide--active');
+        }
+
+        function ontologyStartSlideshow() {
+            // Guard: don't create duplicate intervals
+            if (ontologySlideshowInterval) return;
+            ontologySlideshowInterval = setInterval(ontologyNextSlide, SLIDESHOW_DISPLAY_MS);
+        }
+
+        function ontologyStopSlideshow() {
+            clearInterval(ontologySlideshowInterval);
+            ontologySlideshowInterval = null;
+        }
+
+        // Handle tab visibility: pause when hidden, resume when visible
+        // Reuses the existing visibilitychange listener pattern from
+        // the typing animation above — same approach, separate handler
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                ontologyStopSlideshow();
+            } else {
+                ontologyStartSlideshow();
+            }
+        });
+
+        // Start the slideshow on page load
+        // Wrapped in setTimeout for iOS Safari compatibility —
+        // ensures DOM is fully ready before slideshow initialises
+        setTimeout(ontologyStartSlideshow, 100);
+
+    } else {
+        console.warn('Ontology slideshow: no slides found. Check .ontology-slide elements in index.html.');
+    }
+    // ================================================
+    // End: 12-Element Ontology Slideshow
+    // ================================================
+
 }); // End DOMContentLoaded
+
