@@ -135,7 +135,7 @@ h2::after {
 .section-desc {
     text-align: center;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
-    font-style: italic;
+    font-style: normal;    /* previously "italic" */
     color: var(--text-color);
     opacity: 0.75;
     margin-top: -0.75rem;
