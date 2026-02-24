@@ -209,7 +209,56 @@
     }
   }
 
-  /* ── Initialise ──────────────────────────────────────────────
+  /* ── Shooting star (right to left) ──────────────────────────
+     Identical twin of ShootingStar — fires from the right side
+     and travels right-to-left. Completely independent system.  */
+  class ShootingStarRight {
+    constructor() { this.active = false; }
+
+    fire() {
+      if (this.active) return;
+      this.x     = W - (Math.random() * W * 0.8 + W * 0.05);
+      this.y     = Math.random() * H * 0.3;
+      const deg  = 15 + Math.random() * 35;
+      const spd  = 4  + Math.random() * 4;
+      this.vx    = -Math.cos(deg * Math.PI / 180) * spd;
+      this.vy    =  Math.sin(deg * Math.PI / 180) * spd;
+      this.alpha = 0.5 + Math.random() * 0.2;
+      this.tail  = 40 + Math.random() * 60;
+      this.active = true;
+    }
+
+    update() {
+      if (!this.active) return;
+      this.x    += this.vx;
+      this.y    += this.vy;
+      this.alpha -= 0.011;
+      if (this.alpha <= 0 || this.x < -80 || this.y > H + 80) {
+        this.active = false;
+      }
+    }
+
+    draw() {
+      if (!this.active) return;
+      const steps = this.tail / Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+      const tx    = this.x - this.vx * steps;
+      const ty    = this.y - this.vy * steps;
+      const grad  = ctx.createLinearGradient(tx, ty, this.x, this.y);
+      grad.addColorStop(0, `rgba(120,200,60,0)`);
+      grad.addColorStop(1, `rgba(66,161,26,${this.alpha.toFixed(2)})`);
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(tx, ty);
+      ctx.lineTo(this.x, this.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = 1.4;
+      ctx.lineCap     = "round";
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+   
+   /* ── Initialise ──────────────────────────────────────────────
      Stars scattered across full canvas on load so it looks
      populated immediately — not building from centre.          */
   const COUNT  = Math.min(160, Math.floor((W * H) / 6000));
@@ -217,6 +266,7 @@
 
   /* Two shooting stars — can occasionally overlap for richness */
   const meteors = [new ShootingStar(), new ShootingStar()];
+   const meteorsRight = [new ShootingStarRight(), new ShootingStarRight()];
 
   function scheduleMeteor() {
     setTimeout(() => {
@@ -226,6 +276,14 @@
     }, 3000 + Math.random() * 4000); // every 3–7 seconds
   }
   scheduleMeteor();
+   function scheduleMeteorRight() {
+    setTimeout(() => {
+      const idle = meteorsRight.find(m => !m.active);
+      if (idle) idle.fire();
+      scheduleMeteorRight();
+    }, 3000 + Math.random() * 4000);
+  }
+  scheduleMeteorRight();
 
   /* ── Animation loop ──────────────────────────────────────────  */
   let rafId;
@@ -236,6 +294,7 @@
       stars[i].draw();
     }
     meteors.forEach(m => { m.update(); m.draw(); });
+     meteorsRight.forEach(m => { m.update(); m.draw(); });
     rafId = requestAnimationFrame(animate);
   }
 
