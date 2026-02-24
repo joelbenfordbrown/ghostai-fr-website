@@ -168,40 +168,14 @@
 
     fire() {
       if (this.active) return;
-
-      /* Pick a random edge to spawn from: 0=top, 1=right, 2=bottom, 3=left */
-      const edge = Math.floor(Math.random() * 4);
-
-      /* Base travel angle per edge, then randomised ±20° for variety */
-      let baseAngle;
-      if (edge === 0) {
-        /* Top edge — travel generally downward */
-        this.x     = Math.random() * W;
-        this.y     = -10;
-        baseAngle  = 80 + Math.random() * 40;   // 80–120°
-      } else if (edge === 1) {
-        /* Right edge — travel generally leftward */
-        this.x     = W + 10;
-        this.y     = Math.random() * H;
-        baseAngle  = 170 + Math.random() * 40;  // 170–210°
-      } else if (edge === 2) {
-        /* Bottom edge — travel generally upward */
-        this.x     = Math.random() * W;
-        this.y     = H + 10;
-        baseAngle  = 260 + Math.random() * 40;  // 260–300°
-      } else {
-        /* Left edge — travel generally rightward */
-        this.x     = -10;
-        this.y     = Math.random() * H;
-        baseAngle  = 350 + Math.random() * 40;  // 350–30°
-      }
-
-      const rad   = baseAngle * Math.PI / 180;
-      const spd   = 4 + Math.random() * 4;
-      this.vx     = Math.cos(rad) * spd;
-      this.vy     = Math.sin(rad) * spd;
-      this.alpha  = 0.5 + Math.random() * 0.2;
-      this.tail   = 40 + Math.random() * 60;
+      this.x     = Math.random() * W * 0.8 + W * 0.05;
+      this.y     = Math.random() * H * 0.3;
+      const deg  = 15 + Math.random() * 35;   // gentle downward diagonal
+      const spd  = 4  + Math.random() * 4;
+      this.vx    = Math.cos(deg * Math.PI / 180) * spd;
+      this.vy    = Math.sin(deg * Math.PI / 180) * spd;
+      this.alpha = 0.5 + Math.random() * 0.2; // starts gentle, not harsh
+      this.tail  = 40 + Math.random() * 60;
       this.active = true;
     }
 
@@ -210,8 +184,7 @@
       this.x    += this.vx;
       this.y    += this.vy;
       this.alpha -= 0.011;                     // slow graceful fade
-      if (this.alpha <= 0 || this.x > W + 80 || this.x < -80 ||
-          this.y > H + 80 || this.y < -80) {
+      if (this.alpha <= 0 || this.x > W + 80 || this.y > H + 80) {
         this.active = false;
       }
     }
