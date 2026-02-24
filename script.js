@@ -302,7 +302,7 @@ if (savedTheme) {
     // automatically to however many slides exist in HTML.
     // ================================================
 
-    const SLIDESHOW_DISPLAY_MS = 3000; // Edit this value to change display time per slide
+    const SLIDESHOW_DISPLAY_MS = 2000; // Edit this value to change display time per slide (previously 3000)
 
     const ontologySlides = document.querySelectorAll('.ontology-slide');
 
