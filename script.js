@@ -314,15 +314,21 @@ if (savedTheme) {
         let ontologySlideshowInterval = null;
 
         function ontologyNextSlide() {
-            // Remove active class from current slide
-            ontologySlides[ontologyCurrentIndex].classList.remove('ontology-slide--active');
+    // If already on the last slide, stop the slideshow
+    if (ontologyCurrentIndex >= ontologySlides.length - 1) {
+        ontologyStopSlideshow();
+        return;
+    }
 
-            // Advance index, looping back to 0 after last slide
-            ontologyCurrentIndex = (ontologyCurrentIndex + 1) % ontologySlides.length;
+    // Remove active class from current slide
+    ontologySlides[ontologyCurrentIndex].classList.remove('ontology-slide--active');
 
-            // Add active class to next slide
-            ontologySlides[ontologyCurrentIndex].classList.add('ontology-slide--active');
-        }
+    // Advance index (no loop — plays once only)
+    ontologyCurrentIndex = ontologyCurrentIndex + 1;
+
+    // Add active class to next slide
+    ontologySlides[ontologyCurrentIndex].classList.add('ontology-slide--active');
+}
 
         function ontologyStartSlideshow() {
             // Guard: don't create duplicate intervals
@@ -339,12 +345,15 @@ if (savedTheme) {
         // Reuses the existing visibilitychange listener pattern from
         // the typing animation above — same approach, separate handler
         document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                ontologyStopSlideshow();
-            } else {
-                ontologyStartSlideshow();
-            }
-        });
+    if (document.hidden) {
+        ontologyStopSlideshow();
+    } else {
+        // Only restart if slideshow hasn't finished yet
+        if (ontologyCurrentIndex < ontologySlides.length - 1) {
+            ontologyStartSlideshow();
+        }
+    }
+});
 
         // Start the slideshow on page load
         // Wrapped in setTimeout for iOS Safari compatibility —
