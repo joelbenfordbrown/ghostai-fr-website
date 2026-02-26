@@ -1127,13 +1127,33 @@ body.dark-mode .profile-photo {
 /* 12-Element Ontology Slideshow Section            */
 /* ================================================ */
 
-/* Outer section: matches existing section spacing                      */
-/* padding: 0 1.5rem matches .content-box mobile padding on all devices */
+/* Outer section: base spacing and padding retained from original layout */
+/* padding: 0 1.5rem matches .content-box mobile padding on all devices  */
 .ontology-slideshow-section {
     margin-bottom: 2.5rem;
     position: relative;
     scroll-margin-top: 60px;
     padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Constrains slideshow to 60% width on desktop, centred.          */
+/* Previously matched full accordion width — reduced intentionally  */
+/* as full-width was too visually dominant. Full-width on mobile    */
+/* (see responsive override below) for legibility on small screens. */
+/* Class targets the .content-box wrapper div in index.html         */
+/* that wraps .ontology-slideshow-box — no HTML change required.    */
+.ontology-content-box {
+    width: 100%;
+    max-width: 60%;
+}
+
+@media (max-width: 767px) {
+    .ontology-content-box {
+        max-width: 100%; /* Full-width restored on mobile for legibility */
+    }
 }
 
 /* Slideshow box: matches accordion item border style exactly */
