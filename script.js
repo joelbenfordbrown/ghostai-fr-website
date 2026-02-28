@@ -138,17 +138,28 @@ if (savedTheme) {
                      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 
                     // If this is the Call To Action link, open its accordion
-                    if (targetId === 'cta') {
-                        // Find the accordion button with "Funding / Acquisition?" text
-                        const ctaAccordionButton = Array.from(document.querySelectorAll('.accordion-button')).find(
-                            button => button.textContent.includes('Funding / Acquisition?')
-                        );
-                
-                        // If button exists and is not already expanded, click it to open
-                        if (ctaAccordionButton && ctaAccordionButton.getAttribute('aria-expanded') === 'false') {
-                            ctaAccordionButton.click();
-                        }
-                    }
+if (targetId === 'cta') {
+    // Find the accordion button with "Funding / Acquisition?" text
+    const ctaAccordionButton = Array.from(document.querySelectorAll('.accordion-button')).find(
+        button => button.textContent.includes('Funding / Acquisition?')
+    );
+    // If button exists and is not already expanded, click it to open
+    if (ctaAccordionButton && ctaAccordionButton.getAttribute('aria-expanded') === 'false') {
+        ctaAccordionButton.click();
+    }
+}
+
+// If this is the About the Framework link, open Technical Summary accordion
+if (targetId === 'about-framework') {
+    // Find the accordion button with "Technical Summary" text
+    const techSummaryButton = Array.from(document.querySelectorAll('.accordion-button')).find(
+        button => button.textContent.includes('Technical Summary')
+    );
+    // If button exists and is not already expanded, click it to open
+    if (techSummaryButton && techSummaryButton.getAttribute('aria-expanded') === 'false') {
+        techSummaryButton.click();
+    }
+}
                   
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
