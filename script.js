@@ -12,9 +12,9 @@ function initAccordion() {
   accordionButtons.forEach((button, index) => {
   const content = button.nextElementSibling;
   
-  if (index === 1) {
+  if (index === 0) {
     setTimeout(() => button.click(), 100); // ← Auto-expands first accordion in #about-framework only (index 1, as glyph accordion is index 0)
-    // TO REVERT: change condition back to (index === 0) to auto-expand first accordion site-wide instead
+    // TO REVERT: change condition from (index === 1) back to (index === 0) to auto-expand first accordion site-wide instead
     // TO DISABLE: comment out this entire if block to have all accordions closed on load
     // NOTE: index === 1 targets Technical Summary — if new accordions are added above #about-framework, increment this number accordingly
   } else {
