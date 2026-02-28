@@ -12,10 +12,11 @@ function initAccordion() {
   accordionButtons.forEach((button, index) => {
   const content = button.nextElementSibling;
   
-  if (button.closest('section')?.id === 'about-framework' && !button.closest('section').querySelector('.accordion-button[aria-expanded="true"]')) {
-    setTimeout(() => button.click(), 100); // ← Auto-expands first accordion in #about-framework only
+  if (index === 1) {
+    setTimeout(() => button.click(), 100); // ← Auto-expands first accordion in #about-framework only (index 1, as glyph accordion is index 0)
     // TO REVERT: change condition back to (index === 0) to auto-expand first accordion site-wide instead
     // TO DISABLE: comment out this entire if block to have all accordions closed on load
+    // NOTE: index === 1 targets Technical Summary — if new accordions are added above #about-framework, increment this number accordingly
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
