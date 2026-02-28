@@ -791,7 +791,7 @@ body.dark-mode .accordion-button[aria-expanded="true"] .accordion-spiral {
 }
 
 .legal-text {
-    font-size: 0.75rem;
+    font-size: 0.70rem;    /* Updated from 0.75rem to 0.70rem to accommodate longer legal footer text section without impacting vertical spacing */
     line-height: 1.5;
     max-width: 800px;
     margin: 0;
