@@ -784,7 +784,7 @@ body.dark-mode .accordion-button[aria-expanded="true"] .accordion-spiral {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: auto;    /* Updated from 4rem to auto to accommodate longer legal footer text section */
+    min-height: 4rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     text-align: center;
@@ -1092,7 +1092,7 @@ body.dark-mode .profile-photo {
     .footer-content {
          padding-top: 2.5rem;
          padding-bottom: 2.5rem;
-         min-height: auto;   /* Updated from 6rem to auto to accommodate longer legal footer text section */
+         min-height: 6rem;
     }
     .back-to-top-static {
         width: 45px;
