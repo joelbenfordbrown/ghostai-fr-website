@@ -12,8 +12,10 @@ function initAccordion() {
   accordionButtons.forEach((button, index) => {
   const content = button.nextElementSibling;
   
-  if (index === 0) {
-    setTimeout(() => button.click(), 100); // ← 100ms delay ensures DOM readiness
+  if (index === 0 && button.closest('#about-framework')) {
+    setTimeout(() => button.click(), 100); // ← Auto-expands first accordion in #about-framework only
+    // TO REVERT: remove "&& button.closest('#about-framework')" to auto-expand first accordion site-wide
+    // TO DISABLE: comment out this entire if block to have all accordions closed on load
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
