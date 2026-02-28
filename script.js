@@ -12,9 +12,9 @@ function initAccordion() {
   accordionButtons.forEach((button, index) => {
   const content = button.nextElementSibling;
   
-  if (index === 0 && button.closest('#about-framework')) {
+  if (button.closest('section')?.id === 'about-framework' && !button.closest('section').querySelector('.accordion-button[aria-expanded="true"]')) {
     setTimeout(() => button.click(), 100); // ← Auto-expands first accordion in #about-framework only
-    // TO REVERT: remove "&& button.closest('#about-framework')" to auto-expand first accordion site-wide
+    // TO REVERT: change condition back to (index === 0) to auto-expand first accordion site-wide instead
     // TO DISABLE: comment out this entire if block to have all accordions closed on load
   } else {
     button.setAttribute('aria-expanded', 'false');
