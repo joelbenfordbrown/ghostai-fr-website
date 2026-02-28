@@ -784,7 +784,7 @@ body.dark-mode .accordion-button[aria-expanded="true"] .accordion-spiral {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 4rem;
+    min-height: auto;    /* Updated from 4rem to auto to accommodate longer legal footer text section */
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     text-align: center;
