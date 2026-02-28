@@ -1092,7 +1092,7 @@ body.dark-mode .profile-photo {
     .footer-content {
          padding-top: 2.5rem;
          padding-bottom: 2.5rem;
-         min-height: 6rem;
+         min-height: auto;   /* Updated from 6rem to auto to accommodate longer legal footer text section */
     }
     .back-to-top-static {
         width: 45px;
