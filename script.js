@@ -160,6 +160,16 @@ if (targetId === 'about-framework') {
         techSummaryButton.click();
     }
 }
+
+// If this is the Testimonials link, open Professional References accordion
+if (targetId === 'testimonials') {
+    const testimonialsButton = Array.from(document.querySelectorAll('.accordion-button')).find(
+        button => button.textContent.includes('Professional References')
+    );
+    if (testimonialsButton && testimonialsButton.getAttribute('aria-expanded') === 'false') {
+        testimonialsButton.click();
+    }
+}
                   
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
