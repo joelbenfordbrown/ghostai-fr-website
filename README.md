@@ -1,2 +1,2 @@
-# ghostai-fr-website
+# ghostai website
 GHOST AI Framework Website
