@@ -132,16 +132,6 @@ h2::after {
     padding: 0;
 }
 
-.section-desc {
-    text-align: center;
-    font-size: clamp(0.8rem, 2vw, 0.95rem);
-    font-style: normal;    /* previously "italic" */
-    color: var(--text-color);
-    opacity: 0.75;
-    margin-top: -0.75rem;
-    margin-bottom: 1.5rem;
-}
-
 p {
     margin-bottom: 1rem;
 }
@@ -431,7 +421,6 @@ input:not(:checked) + .slider .moon-icon { opacity: 0.7; }
 /* Content Sections */
 .framework-section,
 .cta-section,
-.testimonials-section,
 .contact-section {
     margin-bottom: 2.5rem;
     position: relative;
@@ -792,7 +781,7 @@ body.dark-mode .accordion-button[aria-expanded="true"] .accordion-spiral {
 }
 
 .legal-text {
-    font-size: 0.70rem;    /* Updated from 0.75rem to 0.70rem to accommodate longer legal footer text section without impacting vertical spacing */
+    font-size: 0.75rem;
     line-height: 1.5;
     max-width: 800px;
     margin: 0;
@@ -1082,10 +1071,6 @@ body.dark-mode .profile-photo {
     .content-box {
         padding: 2rem;
     }
-    /* Slideshow section: matches .content-box desktop padding exactly */
-    .ontology-slideshow-section {
-        padding: 0 2rem;
-    }
     .contact-box .attribution-content {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
@@ -1123,87 +1108,6 @@ body.dark-mode .profile-photo {
         padding: 0 2rem;
     }
 }
-
-/* ================================================ */
-/* 12-Element Ontology Slideshow Section            */
-/* ================================================ */
-
-/* Outer section: base spacing and padding retained from original layout */
-/* padding: 0 1.5rem matches .content-box mobile padding on all devices  */
-.ontology-slideshow-section {
-    margin-bottom: 2.5rem;
-    position: relative;
-    scroll-margin-top: 60px;
-    padding: 0 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Constrains slideshow to 60% width on desktop, centred.          */
-/* Previously matched full accordion width — reduced intentionally  */
-/* as full-width was too visually dominant. Full-width on mobile    */
-/* (see responsive override below) for legibility on small screens. */
-/* Class targets the .content-box wrapper div in index.html         */
-/* that wraps .ontology-slideshow-box — no HTML change required.    */
-.ontology-content-box {
-    width: 100%;
-    max-width: 60%;
-}
-
-@media (max-width: 767px) {
-    .ontology-content-box {
-        max-width: 100%; /* Full-width restored on mobile for legibility */
-    }
-}
-
-/* Slideshow box: matches accordion item border style exactly */
-/* border uses var(--divider-color) to support light/dark mode */
-.ontology-slideshow-box {
-    border: 1px solid var(--divider-color);
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #F5F0E4;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-/* Dark mode override for slideshow box background */
-body.dark-mode .ontology-slideshow-box {
-    background-color: #1E1E1E;
-}
-
-/* Aspect ratio wrapper: maintains 1576x1000 image ratio responsively  */
-/* padding-top formula: (1000 / 1576) * 100 = 63.45%                   */
-/* To adjust: change padding-top percentage to match new image ratio    */
-.ontology-slideshow-ratio {
-    position: relative;
-    width: 100%;
-    padding-top: 63.45%;
-    overflow: hidden;
-}
-
-/* Individual slide images: all stacked, absolutely positioned          */
-/* All start invisible (opacity: 0) except the active slide             */
-/* Transition duration: 0.3s — edit here to adjust cross-fade speed     */
-.ontology-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    user-select: none;
-}
-
-/* Active slide: fully visible */
-.ontology-slide--active {
-    opacity: 1;
-}
-/* ================================================ */
-/* End: 12-Element Ontology Slideshow Section       */
-/* ================================================ */
 
 /* TEMPORARILY HIDE DARK MODE TOGGLE + Added HTML file line 102 spacer div to push the menu icon back to the right when dark mode toggle removed */
 .theme-switch-wrapper,

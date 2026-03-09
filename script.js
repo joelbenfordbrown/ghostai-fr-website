@@ -13,10 +13,7 @@ function initAccordion() {
   const content = button.nextElementSibling;
   
   if (index === 0) {
-    setTimeout(() => button.click(), 100); // ← Auto-expands first accordion in #about-framework only (index 1, as glyph accordion is index 0)
-    // TO REVERT: change condition from (index === 1) back to (index === 0) to auto-expand first accordion site-wide instead
-    // TO DISABLE: comment out this entire if block to have all accordions closed on load
-    // NOTE: index === 1 targets Technical Summary — if new accordions are added above #about-framework, increment this number accordingly
+    setTimeout(() => button.click(), 100); // ← 100ms delay ensures DOM readiness
   } else {
     button.setAttribute('aria-expanded', 'false');
     content.style.maxHeight = '0';
@@ -138,38 +135,17 @@ if (savedTheme) {
                      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 
                     // If this is the Call To Action link, open its accordion
-if (targetId === 'cta') {
-    // Find the accordion button with "Funding / Acquisition?" text
-    const ctaAccordionButton = Array.from(document.querySelectorAll('.accordion-button')).find(
-        button => button.textContent.includes('Funding / Acquisition?')
-    );
-    // If button exists and is not already expanded, click it to open
-    if (ctaAccordionButton && ctaAccordionButton.getAttribute('aria-expanded') === 'false') {
-        ctaAccordionButton.click();
-    }
-}
-
-// If this is the About the Framework link, open Technical Summary accordion
-if (targetId === 'about-framework') {
-    // Find the accordion button with "Technical Summary" text
-    const techSummaryButton = Array.from(document.querySelectorAll('.accordion-button')).find(
-        button => button.textContent.includes('Technical Summary')
-    );
-    // If button exists and is not already expanded, click it to open
-    if (techSummaryButton && techSummaryButton.getAttribute('aria-expanded') === 'false') {
-        techSummaryButton.click();
-    }
-}
-
-// If this is the Testimonials link, open Professional References accordion
-if (targetId === 'testimonials') {
-    const testimonialsButton = Array.from(document.querySelectorAll('.accordion-button')).find(
-        button => button.textContent.includes('Professional References')
-    );
-    if (testimonialsButton && testimonialsButton.getAttribute('aria-expanded') === 'false') {
-        testimonialsButton.click();
-    }
-}
+                    if (targetId === 'cta') {
+                        // Find the accordion button with "Funding / Acquisition?" text
+                        const ctaAccordionButton = Array.from(document.querySelectorAll('.accordion-button')).find(
+                            button => button.textContent.includes('Funding / Acquisition?')
+                        );
+                
+                        // If button exists and is not already expanded, click it to open
+                        if (ctaAccordionButton && ctaAccordionButton.getAttribute('aria-expanded') === 'false') {
+                            ctaAccordionButton.click();
+                        }
+                    }
                   
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
@@ -306,90 +282,4 @@ if (targetId === 'testimonials') {
     // Start animation and set up visibility listener
     type();
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // ================================================
-    // 12-Element Ontology Slideshow
-    // ================================================
-    // Cross-fade slideshow cycling through all 21 slides
-    // on continuous loop. Uses CSS class toggling only —
-    // no DOM manipulation of src or style attributes.
-    // ------------------------------------------------
-    // DISPLAY TIME: edit SLIDESHOW_DISPLAY_MS to change
-    // how long each image is shown (in milliseconds).
-    // Current setting: 3000 = 3 seconds per slide.
-    // ------------------------------------------------
-    // IMAGE COUNT: if images are added or removed from
-    // the assets/12-Element-Ontology/ folder, update
-    // the img tags in index.html to match. The JS reads
-    // all elements with class 'ontology-slide' so no
-    // change to this script is needed — it adapts
-    // automatically to however many slides exist in HTML.
-    // ================================================
-
-    const SLIDESHOW_DISPLAY_MS = 1000; // Edit this value to change display time per slide (previously 3000, ie- 3 secs)
-
-    const ontologySlides = document.querySelectorAll('.ontology-slide');
-
-    if (ontologySlides.length > 0) {
-        let ontologyCurrentIndex = 0;
-
-        // Pause slideshow when tab is hidden to save resources
-        // and prevent timing drift on return to tab
-        let ontologySlideshowInterval = null;
-
-        function ontologyNextSlide() {
-    // If already on the last slide, stop the slideshow
-    if (ontologyCurrentIndex >= ontologySlides.length - 1) {
-        ontologyStopSlideshow();
-        return;
-    }
-
-    // Remove active class from current slide
-    ontologySlides[ontologyCurrentIndex].classList.remove('ontology-slide--active');
-
-    // Advance index (no loop — plays once only)
-    ontologyCurrentIndex = ontologyCurrentIndex + 1;
-
-    // Add active class to next slide
-    ontologySlides[ontologyCurrentIndex].classList.add('ontology-slide--active');
-}
-
-        function ontologyStartSlideshow() {
-            // Guard: don't create duplicate intervals
-            if (ontologySlideshowInterval) return;
-            ontologySlideshowInterval = setInterval(ontologyNextSlide, SLIDESHOW_DISPLAY_MS);
-        }
-
-        function ontologyStopSlideshow() {
-            clearInterval(ontologySlideshowInterval);
-            ontologySlideshowInterval = null;
-        }
-
-        // Handle tab visibility: pause when hidden, resume when visible
-        // Reuses the existing visibilitychange listener pattern from
-        // the typing animation above — same approach, separate handler
-        document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        ontologyStopSlideshow();
-    } else {
-        // Only restart if slideshow hasn't finished yet
-        if (ontologyCurrentIndex < ontologySlides.length - 1) {
-            ontologyStartSlideshow();
-        }
-    }
-});
-
-        // Start the slideshow on page load
-        // Wrapped in setTimeout for iOS Safari compatibility —
-        // ensures DOM is fully ready before slideshow initialises
-        setTimeout(ontologyStartSlideshow, 100);
-
-    } else {
-        console.warn('Ontology slideshow: no slides found. Check .ontology-slide elements in index.html.');
-    }
-    // ================================================
-    // End: 12-Element Ontology Slideshow
-    // ================================================
-
 }); // End DOMContentLoaded
-

@@ -1,9 +1,2 @@
-# ghostai website
-
-**GHOST AI Framework Website**
-
-* https://joelbenfordbrown.github.io/ghostai
-
-* https://ghostai.fr
-
----
+# ghostai-fr-website
+GHOST AI Framework Website
