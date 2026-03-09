@@ -38,6 +38,12 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
+User-agent: DeepSeekBot
+Disallow: /
+
+User-agent: DeepSeek-Spider
+Disallow: /
+
 # Allow Google Search (only the basic search bot)
 User-agent: Googlebot
 Allow: /
