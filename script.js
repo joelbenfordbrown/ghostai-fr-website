@@ -235,7 +235,7 @@ if (savedTheme) {
 
     // --- Typing Animation with Memory Leak Prevention ---
     const changingText = document.querySelector('.changing-text');
-    const words = ['unique identities', 'persistent personality', 'synthetic sentience', 'ethical agency'];
+    const words = ['unique identities', 'personality persistence', 'synthetic sentience', 'ethical agency'];
     let currentIndex = 0;
     let isDeleting = false;
     let text = '';
